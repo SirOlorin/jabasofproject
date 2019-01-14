@@ -1,0 +1,34 @@
+.carte {
+    position : relative;
+    display: inline-block;
+    float: left;
+    margin-top : 25px;
+}
+
+.bandeau {
+    width : 100%;
+    height: 350px;
+    background-color: rgb(255, 255, 255, 0.5);
+    margin-top: 50px;
+}
+
+img {
+    height: 300px;
+    width: auto;
+}
+
+.formulaire {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer {
+    position : relative;
+    clear : both;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    font-family: Arial;
+    padding-top: 100px;
+    margin-bottom: 50px;
+}

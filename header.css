@@ -1,0 +1,122 @@
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+html, body {
+    margin:0;
+    padding:0;
+}
+body {
+    background:#ccc;
+}
+
+nav {
+    font-family: helvetica;
+}
+
+.space {
+    height: 100px;
+}
+
+.logo {
+    display:inline-block;
+    height:80px;
+}
+
+.site-footer { /* au cas ou on voudrait normaliser le footer */
+    position: static;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 10000;
+    height: 80px;
+    padding:0 10px;
+    background:rgba(0,0,0,0.8);
+    color:#fff;
+}
+
+.site-header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+    height: 80px;
+    padding-top: 0;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 0;
+    background:rgba(0,0,0,0.8);
+    color:#fff;
+    display:flex;
+    align-items:center;
+}
+.site-header h1 {
+    color:#fff;
+    margin:0;
+}
+.site-header nav {
+    margin-left:auto;
+}
+.dropmenu, .dropmenu ul {
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+.dropmenu {
+    display:flex;
+    padding-right:100px;
+}
+.dropmenu > li {
+    position:relative;
+    margin:0 10px;
+}
+.dropmenu > li > a {
+    height:80px;
+    line-height:80px;
+    white-space:nowrap;
+    display:block;
+    padding:0 25px;
+}
+.dropmenu > li:hover > a {
+    background:red;
+}
+.dropmenu a {
+    text-decoration:none;
+    color:#fff;
+}
+.subwrap {
+    position:fixed;
+    top:80px;
+    bottom:0;
+    overflow:auto;
+    left:-999em;
+}
+li:hover .subwrap {
+    left:auto;
+}
+.sub {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background:#fff;
+    color:#000;
+    border:1px solid #000;
+}
+.sub a {
+    color:#000;
+    display:block;
+    padding:10px 20px;
+}
+.sub a:hover {
+    background:#000;
+    color:#fff;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    font-family: Arial;
+    padding-top: 100px;
+    margin-bottom: 50px;
+}

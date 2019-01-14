@@ -1,0 +1,7 @@
+.footer {
+    display: flex;
+    justify-content: space-around;
+    font-family: Arial;
+    padding-top: 100px;
+    margin-bottom: 50px;
+}
