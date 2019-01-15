@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="FAQ.css">
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Modifier la page d'accueil</h2></center>
+<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Modifier la page FAQ</h2></center>
 
 
 <br>
@@ -15,50 +15,17 @@ while($result=$getcontent->fetch()){
     $spacepx = 290 + $spacefactor * 20;
 
     echo
-        '<div class="container" ; id="cont'.$result['id'].'" ; style="background-color:#666666; height:300px">
-
-    <p class="title" ; style="font-family:sans-serif">' . $result['question'] . '</p>
-
-    <div class="overlay"></div>
-    <div class="button">
-        <button id="butprop" onclick="myFunction'.$result['id'].'(); contsize'.$result['id'].'() " ;
-                style="font-family:sans-serif; background-color: none;color: white; border: 2px solid white;width:70px;height: 25px">
-            Afficher
-        </button>
-        <br>
-        <div class="textdiv" id="myDIV'.$result['id'].'" style="color:white; font-family:sans-serif">
-            <br>
-            <p>' . $result['content'] . '</p>
-
-        </div>
-    </div>
+        '
+    <div class="backoffice">
+    <h3>Question ' . $result['id'] . ' : ' . $result['question'] . '</h3>
+    <p>' . $result['content'] . ' </p>
+    <form action="?page=editfaq&id=' . $result['id'] . '" method="post">
+        <input type="submit" value="Modifier" />
+    </form>
+    <form action="?page=deletefaq&id=' . $result['id'] . '" method="post">
+        <input type="submit" name="deleteaccueil" value="Supprimer" />
+    </form>
 </div>
-
-<script>
-    var x'.$result['id'].' = document.getElementById("myDIV'.$result['id'].'");
-    var y'.$result['id'].' = document.getElementById("cont'.$result['id'].'");
-    x'.$result['id'].'.style.display = "none";
-    function myFunction'.$result['id'].'() {
-        var x'.$result['id'].' = document.getElementById("myDIV'.$result['id'].'");
-        if ((x'.$result['id'].'.style.display == "none")) {
-            x'.$result['id'].'.style.display = "block";
-
-        } else {
-            x'.$result['id'].'.style.display = "none";
-
-        }
-
-    }
-
-    function contsize'.$result['id'].'() {
-        if (y'.$result['id'].'.style.height != \''. $spacepx .'px\') {
-            y'.$result['id'].'.style.height = \''. $spacepx .'px\';
-        }
-        else {
-            y'.$result['id'].'.style.height = \'270px\';
-        }
-    }
-</script>
 '
     ;
 }
