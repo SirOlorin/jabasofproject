@@ -60,10 +60,10 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYS
 $getcontent = $bdd->query("SELECT * FROM `pagefaq`");
 while($result=$getcontent->fetch()){
     $spacefactor = floor(strlen($result['content'])/56);
-    $spacepx = 290 + $spacefactor * 20;
+    $spacepx = 240 + $spacefactor * 14;
 
     echo
-        '<div class="container" ; id="cont'.$result['id'].'" ; style="background-color:#666666; height:300px">
+        '<div class="container" ; id="cont'.$result['id'].'" ; style="background-color:#666666; height:200px">
 
     <p class="title" ; style="font-family:sans-serif">' . $result['question'] . '</p>
 
@@ -103,7 +103,7 @@ while($result=$getcontent->fetch()){
             y'.$result['id'].'.style.height = \''. $spacepx .'px\';
         }
         else {
-            y'.$result['id'].'.style.height = \'270px\';
+            y'.$result['id'].'.style.height = \'200px\';
         }
     }
 </script>
