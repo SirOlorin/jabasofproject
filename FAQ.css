@@ -1,5 +1,20 @@
+input{
+    z-index: 0;
+}
+
 body {
 background-image:url("background.jpg");
+}
+
+.backoffice {
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 300px ;
+    padding-right: 300px ;
+}
+
+.backoffice form {
+    display : inline-block;
 }
 
 .textdiv {
@@ -49,7 +64,7 @@ cursor:pointer;
     margin-right: auto;
   margin-top: 50px;
   width: 650px;
-  height: 300px;
+  height: 200px;
 }
 .overlay {
   position: absolute;
@@ -68,7 +83,7 @@ cursor:pointer;
   position: absolute;
   width: 650px;
   left: 0;
-  top: 120px;
+  top: 50px;
   font-weight: 700;
   font-size: 30px;
   text-align: center;
@@ -79,14 +94,14 @@ cursor:pointer;
 }
 
 .container:hover .title {
-  top: 90px;
+  top: 20px;
 }
 
 .button {
   position: absolute;
   width: 650px;
   left:0;
-  top: 180px;
+  top: 140px;
   text-align: center;
   opacity: 0;
   transition: opacity .35s ease;
