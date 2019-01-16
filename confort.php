@@ -19,11 +19,11 @@
 
 <?php
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
-$getcontent = $bdd->query("SELECT * FROM `pageaccueil`");
+$getcontent = $bdd->query("SELECT * FROM `houses` INNER JOIN `users` ON houses.user_id = users.user_id WHERE houses.user_id = 1");
 while($result=$getcontent->fetch()){
     echo
         '
-        
+        Les maisons : ' . $result['name'] . ' .
         '
     ;
 }
