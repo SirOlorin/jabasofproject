@@ -1,9 +1,9 @@
 <?php
 	//connect.php
 	$server = "localhost";
-	$username   = "Jabasof";
-	$password   = "jabasof";
-	$database   = "forum";
+	$username   = "root";
+	$password   = "";
+	$database   = "jabasof";
  
 	$link = new mysqli($server, $username,  $password, $database);
 
