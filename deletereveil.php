@@ -7,9 +7,9 @@ if(isset($_POST['deletereveil'], $_GET['id'])) {
     $id = $_GET['id'];
     $set = $bdd->prepare("DELETE FROM `alarmclock` WHERE id = ?");
     $set -> execute(array($id));
-    $message="bien joué, c'est supprimé";
+    $message="Le réveil a bien été supprimé.";
 }else{
-    $message = "no post";
+    $message = "Aucun réveil selectionné.";
 }
 if (isset ($message)) {
     echo $message;
