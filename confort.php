@@ -24,24 +24,25 @@ if(isset($_POST['movecheck'], $_POST['temperature'], $_POST['lightcheck'])) {
 
 <center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Confort</h2></center>
 
-<figure class="carte">
-    <img src="plan.png" width="967" height="455" alt="plan" usemap="#plan">
-</figure>
+<form action="?page=confortmap" method="post">
+    <input type="submit" name="display" value="Tester l'option Map">
+</form>
 
-<map name="plan">
-    <area shape="rect" coords="11,14,152,226" href="?page=confort&room=bathroom" alt="Bathroom">
-    <area shape="rect" coords="162,14,459,178" href="?page=confort&room=bedroom" alt="Bedroom">
-    <area shape="rect" coords="467,14,655,177" href="?page=confort&room=bedroom2" alt="Bedroom2">
-    <area shape="rect" coords="664,14,858,178" href="?page=confort&room=bedroom3" alt="Bedroom3">
-    <area shape="rect" coords="869,13,959,226" href="?page=confort&room=bathroom1" alt="Bathroom1">
-    <area shape="poly" coords="162,186,858,187,858,248,205,249,206,225,162,225" href="?page=confort&room=hallway" alt="Hallway">
-    <area shape="rect" coords="11,236,196,446" href="?page=confort&room=kitchen" alt="Kitchen">
-    <area shape="poly" coords="206,257,860, 256, 860, 284, 958, 285, 957, 444, 206, 445" href="?page=confort&room=livingroom" alt="Living Room">
-    <area shape="rect" coords="868,237,955,277" href="?page=confort&room=bathroom2" alt="Bathroom2">
-</map>
+<form>
+    <input type="submit" name="addhouse" value="Ajouter une maison">
+</form>
+
+
 
 <?php
-if(isset($_GET['room'])) {
-    include('confortform.php');
+$bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+$getcontent = $bdd->query("SELECT * FROM `houses` INNER JOIN `users` ON houses.user_id = users.user_id WHERE houses.user_id = 1");
+while($result=$getcontent->fetch()){
+    echo
+        '
+        Les maisons : ' . $result['name'] . ' .
+        '
+    ;
 }
 ?>
+

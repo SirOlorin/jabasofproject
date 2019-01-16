@@ -1,5 +1,14 @@
 <?php
+
 //connect.php
+
+	//connect.php
+	$server = "localhost";
+	$username   = "root";
+	$password   = "";
+	$database   = "jabasof";
+ 
+	$link = new mysqli($server, $username,  $password, $database);
 
 
 $server = "localhost";
