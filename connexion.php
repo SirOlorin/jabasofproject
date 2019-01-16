@@ -32,7 +32,7 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
         $errors = array();
 
         if (!isset($_POST['user_name'])) {
-            $errors[] = 'Le champ "nom d utilisateur" ne peut pas être vide.';
+            $errors[] = 'Le champ "nom d\'utilisateur" ne peut pas être vide.';
         }
 
         if (!isset($_POST['user_pass'])) {
@@ -54,7 +54,6 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
             $sql = "SELECT 
                         user_id,
                         user_name,
-                        user_level
                     FROM
                         users
                     WHERE
@@ -68,7 +67,7 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
             if (!$result) {
                 //something went wrong, display the error
                 echo 'Il y a eu une erreur lors de la connection. Veuillez réessayer.';
-                //echo mysqli_error($link); //debugging purposes, uncomment when needed
+                echo mysqli_error($link); //debugging purposes, uncomment when needed
             } else {
                 //the query was successfully executed, there are 2 possibilities
                 //1. the query returned data, the user can be signed in

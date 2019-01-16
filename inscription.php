@@ -47,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     if (isset($_POST['user_name'])) {
         //le nom d'utilisateur existe déjà
         if (!ctype_alnum($_POST['user_name'])) {
-            $errors[] = 'Le nom d utilisateur ne doit contenir que des lettres et des nombres.';
+            $errors[] = 'Le nom d\'utilisateur ne doit contenir que des lettres et des nombres.';
         }
         if (strlen($_POST['user_name']) > 30) {
-            $errors[] = 'Le nom d utilisateur ne peut pas dépasser 30 caractères.';
+            $errors[] = 'Le nom d\'utilisateur ne peut pas dépasser 30 caractères.';
         }
     } else {
-        $errors[] = 'Le champ du nom d utilisateur ne peut pas être vide.';
+        $errors[] = 'Le champ du nom d\'utilisateur ne peut pas être vide.';
     }
 
 
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
 
         $mysqli = "INSERT INTO
-                    users(user_name, user_pass, user_email ,user_date, user_level)
+                    users(user_name, user_pass, user_email ,user_date)
                 VALUES('" . mysqli_real_escape_string($link, $_POST['user_name']) . "',
                        '" . mysqli_real_escape_string($link,(sha1($_POST['user_pass']))) . "',
                        '" . mysqli_real_escape_string($link, $_POST['user_email']) . "',
