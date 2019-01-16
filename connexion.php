@@ -53,7 +53,7 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
             //$hash=password_hash($_POST['user_pass'],PASSWORD_DEFAULT);
             $sql = "SELECT 
                         user_id,
-                        user_name,
+                        user_name
                     FROM
                         users
                     WHERE
