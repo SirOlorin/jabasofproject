@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'connect.php'; ?>
+//include 'connect.php'; ?>
 
 <br>
 <center>
@@ -9,6 +9,7 @@ include 'connect.php'; ?>
 </center>
 
 <?php
+$bdd = new PDO("mysql:host=127.0.0.1;dbname=jabasof;charset=utf8", "root", "");
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
     echo
@@ -75,18 +76,26 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     } else {
 
 
-
+/*
         $mysqli = "INSERT INTO
                     users(user_name, user_pass, user_email ,user_date)
-                VALUES('" . mysqli_real_escape_string($link, $_POST['user_name']) . "',
+                VALUES(" . mysqli_real_escape_string($link, $_POST['user_name']) . ",
                        '" . mysqli_real_escape_string($link,(sha1($_POST['user_pass']))) . "',
                        '" . mysqli_real_escape_string($link, $_POST['user_email']) . "',
-                        NOW(),
-                        0)";
+                       NOW()";
 
 
         mysqli_query($link, $mysqli);
         $result = mysqli_query($link, $mysqli);
+*/
+
+     $name = htmlspecialchars($_POST['user_name']);
+     $pass = sha1($_POST['user_pass']);
+     $mail = htmlspecialchars($_POST['user_email']);
+
+        $set = $bdd->prepare("INSERT INTO `users`(`user_name`, `user_pass`, `user_email`, `user_date`) VALUES (?,?,?,now())");
+        $set -> execute(array($name, $pass, $mail));
+
 
         /*if(!$result)
         {
