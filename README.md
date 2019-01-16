@@ -17,6 +17,4 @@ deleteaccueil.php est la page qui permet de supprimer un contenu selectionné dan
 accueil.css  
 L'ensemble des fichiers d'une page sont reliés par le même fichier css nom-du-fichier.css  
 
-/!\ Pour les fichiers annexes (photos ou autre), ne pas utiliser des accès en chemin local, utiliser le dossier racine "jabasofproject" ou une URL. 
-
-Test collab 
+/!\ Pour les fichiers annexes (photos ou autre), ne pas utiliser des accès en chemin local, utiliser le dossier racine "jabasofproject" ou une URL.  

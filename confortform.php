@@ -1,51 +1,4 @@
-<?php
-if(isset($_GET['room'])) {
-    $currentroom = $_GET['room'];
-}
-$getcontent = $bdd->prepare("SELECT * FROM `rooms` WHERE name = ?");
-$getcontent -> execute(array($currentroom));
-while($result=$getcontent->fetch()) {
-    if ($result['movedetect'] == "on") {
-        $movedetect = 'on" checked';
-    }else{
-        $movedetect = 'off"';
-    }
-    if ($result['light'] == "on") {
-        $light = 'on" checked';
-    }else{
-        $light = 'off"';
-    }
-    echo '
-        <div class="formulaire">
-    <form action="" method="post">
-        <h3>'. $result['name'] .'</h3><br/>
-        <h2>Détecteur de mouvement</h2><br/>
-        <p>Activé / Désactivé</p><br/>
-        <label class="switch">
-            <input id=\'mouvementhidden\' type=\'hidden\' value=\'\' name=\'movecheck\'>
-            <input id="mouvement" type="checkbox" value="'. $movedetect  .' name="movecheck">
-            <span class="slider"></span>
-        </label>
-        <br/>
-        <h2>Lumière</h2><br/>
-        <p>Allumé / Eteint</p><br/>
-        <label class="switch">
-            <input id=\'lighthidden\' type=\'hidden\' value=\'off\' name=\'lightcheck\'>
-            <input id="light" type="checkbox" value="'. $light .' name="lightcheck">
-            <span class="slider"></span>
-        </label>
-        <br/>
-        <h2>Température</h2><br/>
-        <input type="text" name="temperature" placeholder="en C°" value="'. $result['temperature'] .'">
-        <input type="submit" value="Valider">
-    </form>
-</div>
-';
 
-}
-?>
-
-<!--
 <div class="formulaire">
     <form action="" method="post">
         <h3>Salle de bain 1</h3><br/>
@@ -70,4 +23,4 @@ while($result=$getcontent->fetch()) {
         <input type="submit" value="Valider">
     </form>
 </div>
--->
+

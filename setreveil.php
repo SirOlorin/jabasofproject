@@ -14,22 +14,22 @@ if(isset($_POST['submit'], $_GET['id'])) {
                 $val1 = htmlspecialchars($_POST['valdate']);
                 $set = $bdd->prepare("UPDATE alarmclock SET frequency = ? , val1 = ? , val2 = ?, `time` = ? WHERE id = ?");
                 $set -> execute(array('once', $val1, NULL, $time, $id));
-                $message="Le réveil a bien été programmé.";
+                $message="bien joué";
             }else{
-                $message="Veuillez entrer une date.";
+                $message="pas de valdate";
             }
         }else{
             if (!empty($_POST['valday'])) {
                 $val2 = implode(', ',$_POST['valday']);
                 $set = $bdd->prepare("UPDATE alarmclock SET frequency = ? , val1 = ? , val2 = ?, `time` = ? WHERE id = ?");
                 $set -> execute(array('weekly', NULL, $val2, $time, $id));
-                $message="Le réveil a bien été programmé.";
+                $message="bien joué";
             }else{
-                $message="Veuillez indiquer au moins un jour de la semaine.";
+                $message="pas de valday";
             }
         }
     }else {
-        $message = "Veuillez remplir les champs nécessaires.";
+        $message = "check la form";
     }
 }
 if (isset ($message)) {
