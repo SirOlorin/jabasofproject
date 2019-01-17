@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include 'connect.php'; ?>
 
 <br>
@@ -11,6 +11,7 @@ include 'connect.php'; ?>
 if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
 
     echo 'Vous êtes connecté, cliquez ici <a href="logout.php">se déconnecter</a> pour vous déconnecter.';
+    echo $_SESSION['user_id'];
 } else {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
@@ -84,7 +85,7 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
                         $_SESSION['user_name'] = $row['user_name'];
                     }
 
-                    echo "Bienvenue '" . $_SESSION['user_name'] . "', cliquez ici <a href='index.php'> pour revenir à l'accueil.";
+                    echo "Bienvenue " . $_SESSION['user_name'] . ", cliquez ici <a href='index.php'> pour revenir à l'accueil.";
                 }
             }
         }
