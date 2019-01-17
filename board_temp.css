@@ -1,6 +1,3 @@
-#confort {
-
-}
 
 .container {
     text-align : center;
@@ -93,19 +90,7 @@
     opacity: 1;
 }
 
-#logo{
 
-}
-
-body {
-    background-image:url(Images/background6.jpg);
-}
-
-#bloc_page
-{
-    width: 100%;
-    min-width: 1280px;
-}
 
 
 
