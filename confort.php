@@ -20,7 +20,7 @@ if(isset($_POST['movecheck'], $_POST['temperature'], $_POST['lightcheck'])) {
 ?>
 
 <title>Confort</title>
-<link rel="stylesheet" type="text/css" href="confort.css">
+<link rel="stylesheet" type="text/css" href="confortmap.css">
 
 <center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Confort</h2></center>
 
