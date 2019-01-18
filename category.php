@@ -12,7 +12,7 @@ $sql4 = "SELECT
         FROM
             categories
         WHERE
-            cat_id = " . mysqli_real_escape_string($link, $_GET['cat_id']) . "";
+            cat_id = '" . mysqli_real_escape_string($link, $_GET['cat_id']) . "'";
 
 mysqli_query($link, $sql4);
 $result = mysqli_query($link, $sql4);
@@ -20,18 +20,18 @@ $result = mysqli_query($link, $sql4);
 
 if ($result != mysqli_query($link, $sql4))
 {
-    echo 'La catégorie n a pas pu être affiché. Veuillez réessayer ultérieurement.';
+    echo 'La catégorie n\'a pas pu être affiché. Veuillez réessayer ultérieurement.';
 }
 else
 {
-    if(mysqli_num_rows($result4) == 0)
+    if(mysqli_num_rows($result) != 0)
     {
-        echo 'Cette catégorie n existe pas.';
+        echo 'Cette catégorie n\'existe pas.';
     }
     else
     {
         //display category data
-        while($row = mysqli_fetch_assoc($result4))
+        while($row = mysqli_fetch_assoc($result))
         {
             echo '<h2>Sujet dans ′' . $row['cat_name'] . '′ catégorie</h2>';
         }
@@ -45,20 +45,20 @@ else
                 FROM
                     topics
                 WHERE
-                    topic_cat = " . mysqli_real_escape_string($_GET['id']);
+                    topic_cat = '" . mysqli_real_escape_string($link,$_GET['cat_id']) . "'";
 
         mysqli_query($link, $sql3);
         $result3 = mysqli_query($link, $sql3);
 
         if(!$result3)
         {
-            echo 'Les sujets n ont pas pu être affiché, veuillez réessayer ultérieurement.';
+            echo 'Les sujets n\'ont pas pu être affiché, veuillez réessayer ultérieurement.';
         }
         else
         {
             if(mysqli_num_rows($result3) == 0)
             {
-                echo 'Il n y pas encore de sujet dans cette catégorie';
+                echo 'Il n\'y pas encore de sujet dans cette catégorie';
             }
             else
             {

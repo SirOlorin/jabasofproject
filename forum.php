@@ -16,14 +16,14 @@ $result = mysqli_query($link, $sql);
 
 if($result != mysqli_query($link, $sql))
 {
-    echo 'Les catégories n ont pas pu être affiché. Veuillez réessayer ultérieurement.';
+    echo 'Les catégories n\'ont pas pu être affiché. Veuillez réessayer ultérieurement.';
 }
 else
 {
 
     if(mysqli_num_rows($result) == 0)
     {
-        echo 'Pas de catégories définies pour l instant.';
+        echo 'Pas de catégories définies pour l\'instant.';
     }
     else
     {
@@ -42,10 +42,10 @@ else
 
             echo '<tr>';
             echo '<td class="leftpart">';
-            echo "<h3><a href='category.php?id'> '".$row['cat_name']."'</a></h3>'".$row['cat_description']."'";
+            echo "<h3><a href='category.php?cat_id'> '".$row['cat_name']."'</a></h3>'".$row['cat_description']."'";
             echo '</td>';
             echo '<td class="rightpart">';
-            echo '<a href="topic.php?id=">Sujet</a>';
+            echo '<a href="topic.php?topic_id">Sujet</a>';
             echo '</td>';
             echo '</tr>';
         }

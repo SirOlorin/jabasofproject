@@ -6,8 +6,9 @@ include 'header_forum.php';
 echo '<h2>Crée un sujet de discussion</h2>';
 if($_SESSION['signed_in'] == false)
 {
-    //the user is not signed in
+    error_reporting(0);
     echo 'Désolé, vous devez être <a href="?page=connexion">connecté</a> pour créer un sujet.';
+    error_reporting(1);
 }
 else
 {
@@ -37,11 +38,11 @@ else
                 //there are no categories, so a topic can't be posted
                 if($_SESSION['user_level'] == 1)
                 {
-                    echo 'Vous n avez pas encore créer de catégorie.';
+                    echo 'Vous n\'avez pas encore créer de catégorie.';
                 }
                 else
                 {
-                    echo 'Avant de pouvoir créer un sujet, attendez qu un administrateur crée une catégorie.';
+                    echo 'Avant de pouvoir créer un sujet, attendez qu \'n administrateur crée une catégorie.';
                 }
             }
             else
@@ -98,7 +99,7 @@ else
             if(!$result)
             {
                 //something went wrong, display the error
-                echo 'Une erreur est survenu lors de l insertion de vos données. Veuillez réessayer ultérieurement.' . mysqli_error($link);
+                echo 'Une erreur est survenu lors de l\'insertion de vos données. Veuillez réessayer ultérieurement.' . mysqli_error($link);
                 $sql = "ROLLBACK;";
                 $result = mysqli_query($link,$sql);
             }
@@ -126,7 +127,7 @@ else
                 if(!$result)
                 {
                     //something went wrong, display the error
-                    echo 'Une erreur est survenu lors de l insertion de votre sujet. Veuillez réessayer ultérieurement.' . mysqli_error($link);
+                    echo 'Une erreur est survenu lors de l\'insertion de votre sujet. Veuillez réessayer ultérieurement.' . mysqli_error($link);
                     $sql = "ROLLBACK;";
                     mysqli_query($link, $sql);
                     $result = mysqli_query($link, $sql);

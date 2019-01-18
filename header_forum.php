@@ -13,7 +13,7 @@
             <?php
             session_start();
             if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
-                echo 'Bonjour' . $_SESSION["user_name"] . '. Ce n est pas vous ? <a href="logout.php">Se déconnecter</a>';
+                echo 'Bonjour ' . $_SESSION["user_name"] . '. Ce n est pas vous ? <a href="logout.php">Se déconnecter</a>';
             } else {
                 echo '<a href="signin.php">Se connecter</a> or <a href="signup.php">Créer un compte</a>.';
             }
