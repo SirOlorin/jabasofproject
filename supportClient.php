@@ -1,6 +1,7 @@
 <html>
 <center>
 <head><meta charset="utf-8"></head>
+    <h1>Admonistrateur : Support Client</h1>
 <form style="font-family: sans-serif;color: #943232;" action="addDB.php" method="post">
     Nom : <br>
     <input id="field" type="text" name="nom" value="" placeholder="" style="font-family: sans-serif;color: #943232;font-size: 20px;" autofocus="" required>
@@ -23,52 +24,50 @@
 </form>
 ----------------------------------------------
 <br><br>
-<b> Fonctionnalités présentes :<b> <br><br>
+<b> Contact :<b> <br><br>
 
-<?php
-header('Content-Type: text/html; charset=ISO-8859-1');
-$servername = "localhost:3306";
-$username = "Jabasof";
-$password = "jabasof";
-$dbname = "forum";
+        <?php
+        header('Content-Type: text/html; charset=ISO-8859-1');
+        $servername = "localhost:3306";
+        $username = "Jabasof";
+        $password = "jabasof";
+        $dbname = "forum";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
 
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+        }
+
+        $list = "SELECT * from client";
+
+        $result = mysqli_query($conn,$list);
+        if (!$result) {
+            printf("Error: %s\n", mysqli_error($conn));
+            exit();
+        }
+
+        while($row = mysqli_fetch_array($result))
+        {
+            echo '
+                <div>
+                    <center><br>
+                        <h3>'.$row['prenom']." ".$row['nom'].'</h3>
+                            <a href="mailto:'.$row['mail'].'">
+                                <p>'.$row['mail'].'</p>
+                            </a>
+                    </center>
+                </div>
+            '
+            ;
+        }
+        echo "</table>";
 
 
-}
-
-$list = "SELECT * from client";
-
-$result = mysqli_query($conn,$list);
-if (!$result) {
-    printf("Error: %s\n", mysqli_error($conn));
-    exit();
-}
-
-echo "<table border='1'>
-<tr>
-<th>Nom</th>
-<th>Prénom</th>
-<th>Mail</th>
-</tr>";
-
-while($row = mysqli_fetch_array($result))
-{
-    echo "<tr>";
-    echo "<td>" . $row['nom'] . "</td>";
-    echo "<td>" . $row['prenom'] . "</td>";
-    echo "<td>" . $row['mail'] . "</td>";
-    echo "</tr>";
-}
-echo "</table>";
-
-mysqli_close($conn);
-?>
+        ?>
 </center>
 </html>
 

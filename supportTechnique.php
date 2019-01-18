@@ -1,6 +1,7 @@
 <html>
 <center>
     <head><meta charset="utf-8"></head>
+    <h1>Admonistrateur : Support Technique</h1>
     <form style="font-family: sans-serif;color: #943232;" action="addDBTech.php" method="post">
         Nom : <br>
         <input id="field" type="text" name="nom" value="" placeholder="" style="font-family: sans-serif;color: #943232;font-size: 20px;" autofocus="" required>
@@ -54,7 +55,6 @@
                 echo '
                 <div>
                     <center><br>
-                        <h3>Client</h3>
                         <h3>'.$row['prenom']." ".$row['nom'].'</h3>
                             <a href="mailto:'.$row['mail'].'">
                                 <p>'.$row['mail'].'</p>
