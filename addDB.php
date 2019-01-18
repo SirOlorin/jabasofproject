@@ -13,7 +13,6 @@ if ($conn->connect_error) {
 $x=mysqli_real_escape_string($conn,$_POST["nom"]);
 $y=mysqli_real_escape_string($conn,$_POST["prenom"]);
 $z=mysqli_real_escape_string($conn,$_POST["mail"]);
-$t=mysqli_real_escape_string($conn,$_POST["telephone"]);
 $err=null;
 
 $check = "SELECT * from client where nom LIKE '$x'";
@@ -28,9 +27,8 @@ if($result->num_rows < 1)
     $x=mysqli_real_escape_string($conn,$_POST["nom"]);
     $y=mysqli_real_escape_string($conn,$_POST["prenom"]);
     $z=mysqli_real_escape_string($conn,$_POST["mail"]);
-    $z=mysqli_real_escape_string($conn,$_POST["telephone"]);
-    $sql = "INSERT INTO client (nom,prenom,mail,telephone)
-    VALUES ('{$x}','{$y}','{$z}','{$t}')";
+    $sql = "INSERT INTO client (nom,prenom,mail)
+    VALUES ('{$x}','{$y}','{$z}')";
 
     $result2=mysqli_query($conn, $sql);
 
@@ -50,4 +48,4 @@ else if($result->num_rows >= 1) {
 $conn->close();
 ?>
 
-<html><br><br><a href="supportClient.php">Retour</a></html>
+<html><br><br><a href="?page=supportTechnique">Retour</a></html>

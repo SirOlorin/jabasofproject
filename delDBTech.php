@@ -25,4 +25,4 @@ else {
 
 $conn->close();
 ?>
-<html><br><br><a href="supportTechnique.php">Retour</a></html>
+<html><br><br><a href="?page=supportTechnique">Retour</a></html>
