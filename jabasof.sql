@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 18 jan. 2019 à 23:26
+-- Généré le :  mer. 16 jan. 2019 à 08:35
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -53,21 +53,6 @@ INSERT INTO `alarmclock` (`id`, `name`, `frequency`, `val1`, `val2`, `time`) VAL
 -- --------------------------------------------------------
 
 --
--- Structure de la table `captors`
---
-
-DROP TABLE IF EXISTS `captors`;
-CREATE TABLE IF NOT EXISTS `captors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(32) NOT NULL,
-  `state` varchar(32) NOT NULL,
-  `id_room` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `categories`
 --
 
@@ -89,56 +74,6 @@ INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`) VALUES
 (5, 'transport', 'aaa'),
 (4, 'Test', 'Ceci est un exercice.'),
 (10, 'CatÃ©gorie', 'Description');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `houselinks`
---
-
-DROP TABLE IF EXISTS `houselinks`;
-CREATE TABLE IF NOT EXISTS `houselinks` (
-  `houselink_id` int(11) NOT NULL AUTO_INCREMENT,
-  `house_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  PRIMARY KEY (`houselink_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `houselinks`
---
-
-INSERT INTO `houselinks` (`houselink_id`, `house_id`, `user_id`) VALUES
-(1, 1, 2),
-(2, 2, 2),
-(3, 4, 1),
-(4, 6, 1);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `houses`
---
-
-DROP TABLE IF EXISTS `houses`;
-CREATE TABLE IF NOT EXISTS `houses` (
-  `house_id` int(11) NOT NULL AUTO_INCREMENT,
-  `house_name` varchar(32) NOT NULL,
-  `house_admin` varchar(32) NOT NULL,
-  PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `houses`
---
-
-INSERT INTO `houses` (`house_id`, `house_name`, `house_admin`) VALUES
-(1, 'Maison 1', ''),
-(2, 'Maison 2', ''),
-(3, 'la casa', ''),
-(4, 'Jazz House', ''),
-(5, 'la casa 2', ''),
-(6, 'Main House', 'admin');
 
 -- --------------------------------------------------------
 
@@ -252,9 +187,9 @@ CREATE TABLE IF NOT EXISTS `topics` (
   `topic_subject` varchar(255) NOT NULL,
   `topic_date` datetime NOT NULL,
   `topic_cat` int(8) NOT NULL,
-  `user_id` int(8) NOT NULL,
+  `topic_by` int(8) NOT NULL,
   PRIMARY KEY (`topic_id`),
-  KEY `topic_by` (`user_id`),
+  KEY `topic_by` (`topic_by`),
   KEY `topic_cat` (`topic_cat`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -262,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `topics` (
 -- Déchargement des données de la table `topics`
 --
 
-INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `user_id`) VALUES
+INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`) VALUES
 (1, 'Réveil', '0009-12-18 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
@@ -275,22 +210,22 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(8) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(30) NOT NULL,
-  `user_lastname` varchar(32) NOT NULL,
-  `user_firstname` varchar(32) NOT NULL,
   `user_pass` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `user_date` datetime NOT NULL,
+  `user_level` int(8) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name_unique` (`user_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_lastname`, `user_firstname`, `user_pass`, `user_email`, `user_date`) VALUES
-(2, 'alain', 'NGUYEN', 'Alain', '8450103c06dbd58add9d047d761684096ac560ca', 'alain@mail.com', '2019-01-17 19:42:25'),
-(1, 'admin', 'CHABCHOUB', 'Yousra', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.com', '2019-01-17 19:11:12');
+INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_level`) VALUES
+(11, 'add', 'a', 'a@a.com', '2018-12-10 15:34:17', 0),
+(9, 'UserTest', 'test', 'helloworld@gmail.com', '2018-12-09 22:28:07', 0),
+(7, 'Olorin', 'a', 'ectorgomez27@aol.com', '2018-12-09 21:56:44', 0);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

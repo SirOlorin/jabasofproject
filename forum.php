@@ -37,15 +37,17 @@ else
         //{
 
 
+        $fetch = mysqli_fetch_assoc($result);
+
         while($row = mysqli_fetch_array($result))
         {
 
             echo '<tr>';
             echo '<td class="leftpart">';
-            echo "<h3><a href='category.php?cat_id'> '".$row['cat_name']."'</a></h3>'".$row['cat_description']."'";
+            echo "<h3><a href='category.php?cat_id=$row[cat_id]'> '".$row['cat_name']."'</a></h3>'".$row['cat_description']."'";
             echo '</td>';
             echo '<td class="rightpart">';
-            echo '<a href="topic.php?topic_id">Sujet</a>';
+            echo "<a href='topic.php?topic_id=$row[cat_id]'>Sujet</a>";
             echo '</td>';
             echo '</tr>';
         }
