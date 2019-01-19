@@ -3,33 +3,36 @@
 
 <?php
 $bdd = new PDO("mysql:host=127.0.0.1;dbname=jabasof;charset=utf8", "root", "");
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit']) AND isset($_GET['room'])) {
     if( !empty($_POST['name']) AND !empty($_POST['time']) AND ($_POST['once']) != ($_POST['weekly'])) {
         $name = htmlspecialchars($_POST['name']);
         $time = htmlspecialchars($_POST['time']);
         $once = htmlspecialchars($_POST['once']);
         $weekly = htmlspecialchars($_POST['weekly']);
+        $room = htmlspecialchars($_GET['room']);
         if ($once == "on" ) {
             if (!empty($_POST['valdate'])) {
                 $val1 = htmlspecialchars($_POST['valdate']);
-                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`) VALUES (?,?,?,?,?)");
-                $set -> execute(array($name,'once', $val1, NULL, $time));
-                $message="bien joué";
+                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`,`room_id`) VALUES (?,?,?,?,?,?)");
+                $set -> execute(array($name,'once', $val1, NULL, $time,$room));
+                $message="Le réveil a bien été ajouté.";
+                header( "refresh:2;url=index.php?page=house&id=".$_GET['room']);
             }else{
-                $message="pas de valdate";
+                $message="Veuillez indiquer la date.";
             }
         }else{
             if (!empty($_POST['valday'])) {
                 $val2 = implode(', ',$_POST['valday']);
-                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`) VALUES (?,?,?,?,?)");
-                $set -> execute(array($name,'weekly', NULL, $val2, $time));
-                $message="bien joué";
+                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`,`room_id`) VALUES (?,?,?,?,?,?)");
+                $set -> execute(array($name,'weekly', NULL, $val2, $time,$room));
+                $message="Le réveil a bien été ajouté.";
+                header( "refresh:2;url=index.php?page=house&id=".$_GET['room']);
             }else{
-                $message="pas de valday";
+                $message="Veuillez indiquer un ou plusieurs jours.";
             }
         }
     }else {
-        $message = "check la form";
+        $message = "Veuillez remplir tous les champs du formulaire.";
     }
 }
 ?>

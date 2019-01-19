@@ -9,7 +9,7 @@
         <h3>Confort</h3>
         <p>Dans cette rubrique, gérez votre confort !</p>
     </figcaption>
-    <a href="?page=confort"></a>
+    <a href="?page=confortmap"></a>
 </figure>
 <figure class="carte">
     <img src="https://www.success.com/wp-content/uploads/legacy/sites/default/files/main/blogposts/howtowakeupwithanunstoppableattitude.jpg" alt="reveil"/>
