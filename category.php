@@ -33,7 +33,7 @@ else
         //display category data
         while($row = mysqli_fetch_assoc($result))
         {
-            echo '<h2>Sujet dans la catégorie \'' . $row['cat_name'] . '\'</h2>';
+            echo '<h2>Sujets dans la catégorie \'' . $row['cat_name'] . '\' :</h2>';
         }
 
         //on fait une query pour les sujets
@@ -77,7 +77,7 @@ else
                 {
                     echo '<tr>';
                     echo '<td class="leftpart">';
-                    echo '<h3><a href="topic.php?topic_id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
+                    echo "<h3><a href='topic.php?topic_id=$save'> '" . $row['topic_subject'] . "'</a><h3>";
                     echo '</td>';
                     echo '<td class="rightpart">';
                     echo date('d-m-Y', strtotime($row['topic_date']));

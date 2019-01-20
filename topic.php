@@ -8,33 +8,33 @@ $save=$_GET['topic_id'];
 $sql = "SELECT
             *
         FROM
-            topic
+            topics
         WHERE
-            topic_id = '" . mysqli_real_escape_string($link, $_GET['topic_id']) . "'";
+            topic_cat = '" . mysqli_real_escape_string($link, $save) . "'";
 
 mysqli_query($link, $sql);
 $result = mysqli_query($link, $sql);
 
-
 if ($result != mysqli_query($link, $sql))
 {
-    echo 'La catégorie n\'a pas pu être affiché. Veuillez réessayer ultérieurement.';
+    echo 'Le sujet n\'a pas pu être affiché. Veuillez réessayer ultérieurement.';
 }
 else
 {
     if(mysqli_num_rows($result) == 0)
     {
-        echo 'Cette catégorie n\'existe pas.';
+        echo 'Ce sujet n\'existe pas.';
     }
     else
     {
         //display category data
         while($row = mysqli_fetch_assoc($result))
         {
-            echo '<h2>Sujet dans la catégorie \'' . $row['cat_name'] . '\'</h2>';
+            echo '<h2>' . $row['topic_subject'] . '</h2>';
+            $subject =$row['topic_subject'];
         }
 
-        //on fait une query pour les sujets
+        //on fait une query pour les post
 
         $sql2 = "SELECT
                     posts.post_topic,
@@ -50,47 +50,58 @@ else
                  ON
                     posts.post_by = users.user_id
                  WHERE
-                    posts.post_topic = " . mysqli_real_escape_string($link,$_GET['id']) . "";
+                    posts.post_topic = '" . mysqli_real_escape_string($link,$_GET['topic_id']) . "'
+                 ORDER BY
+                    `posts`.`post_date` ASC";
+
 
         mysqli_query($link, $sql2);
-        $result3 = mysqli_query($link, $sql2);
+        $result2 = mysqli_query($link, $sql2);
 
-        if(!$result3)
+        if(!$result2)
         {
             echo 'Les sujets n\'ont pas pu être affiché, veuillez réessayer ultérieurement.';
         }
         else
         {
-            if(mysqli_num_rows($result3) == 0)
+            if(mysqli_num_rows($result2) == 0)
             {
-                echo mysqli_error($link);
-                echo 'Il n\'y pas encore de sujet dans cette catégorie';
+                echo 'Il n\'y pas encore de post dans cette catégorie';
 
             }
             else
             {
 
-                echo '<table border="1">
+                echo '<table border="2">
                       <tr>
-                        <th>Sujet</th>
-                        <th>Date de création : </th>
+                        <th>Sujet : ' . $subject . '</th>
+                        <th>Utilisateur et Date :</th>
+                        
                       </tr>';
 
-                while($row = mysqli_fetch_array($result3))
+                while($row = mysqli_fetch_array($result2))
                 {
                     echo '<tr>';
                     echo '<td class="leftpart">';
-                    echo '<h3><a href="topic.php?topic_id=' . $row['topic_id'] . '">' . $row['topic_subject'] . '</a><h3>';
+                    echo '' . $row['post_content'] . '';
                     echo '</td>';
                     echo '<td class="rightpart">';
-                    echo date('d-m-Y', strtotime($row['topic_date']));
+
+                    echo  'par ' . $row['user_name'] . ' le : ';
+                    echo date('d-m-Y', strtotime($row['post_date']));
                     echo '</td>';
                     echo '</tr>';
                 }
+
+                echo "<form method='post' action='reply.php?post_id=$save'>
+                    <textarea name='reply-content'></textarea>
+                    <input type='submit' value='Poster réponse' />
+                </form>";
+
+
             }
         }
     }
 }
-
 
 ?>
