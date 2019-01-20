@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     '
                 <form method="post" action="">
                 <center>
-                    <h3>NOM D\'UTILISATEUR</h3>
+                    <h3>NOM</h3>
                     <p>
                         <input type="text" name="user_name" id="NOM">
                     </p>

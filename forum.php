@@ -2,7 +2,11 @@
 
 include 'connect.php';
 
-include 'header_forum.php';
+
+
+if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
+
+    include 'header_forum.php';
 
 $sql = "SELECT
             cat_id,
@@ -58,6 +62,11 @@ else
     {
     echo $row['cat_name'];
     }*/
+}
+
+}
+else {
+    echo 'Désolé, vous devez être <a href="?page=connexion">connecté</a>  pour accéder au forum.';
 }
 
 ?>
