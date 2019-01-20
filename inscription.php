@@ -48,7 +48,10 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     if (isset($_POST['user_name'])) {
         //le nom d'utilisateur existe déjà
         if (!ctype_alnum($_POST['user_name'])) {
-            $errors[] = 'Le nom d\'utilisateur ne doit contenir que des lettres et des nombres.';
+            $errors[] = 'Nom d\'utilisateur déjà utilisé.';
+        }
+        if (!ctype_alnum($_POST['user_email'])) {
+            $errors[] = 'Cet email est déjà utilisé.';
         }
         if (strlen($_POST['user_name']) > 30) {
             $errors[] = 'Le nom d\'utilisateur ne peut pas dépasser 30 caractères.';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 16 jan. 2019 à 08:35
+-- Généré le :  Dim 20 jan. 2019 à 15:20
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -134,15 +134,27 @@ INSERT INTO `pagefaq` (`id`, `question`, `content`) VALUES
 
 DROP TABLE IF EXISTS `posts`;
 CREATE TABLE IF NOT EXISTS `posts` (
-  `post_id` int(8) NOT NULL AUTO_INCREMENT,
+  `post_id` int(255) NOT NULL AUTO_INCREMENT,
   `post_content` text NOT NULL,
   `post_date` datetime NOT NULL,
-  `post_topic` int(8) NOT NULL,
-  `post_by` int(8) NOT NULL,
+  `post_topic` int(255) NOT NULL,
+  `post_by` int(255) NOT NULL,
   PRIMARY KEY (`post_id`),
   KEY `post_topic` (`post_topic`),
   KEY `post_by` (`post_by`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `post_content`, `post_date`, `post_topic`, `post_by`) VALUES
+(10, 'Cool life bro.', '2019-01-01 00:00:00', 10, 15),
+(33, 'kek', '2019-01-20 15:04:29', 10, 15),
+(32, 'Lul', '2019-01-20 15:03:04', 10, 15),
+(31, 'Il vole ? Je sors...', '2019-01-20 15:02:11', 10, 15),
+(30, 'Essaye de le redÃ©marrer.', '2019-01-20 14:57:38', 10, 15),
+(29, 'Essaye de le redÃ©marrer.', '2019-01-20 14:57:38', 10, 15);
 
 -- --------------------------------------------------------
 
@@ -183,22 +195,26 @@ INSERT INTO `rooms` (`id`, `name`, `movedetect`, `light`, `temperature`) VALUES
 
 DROP TABLE IF EXISTS `topics`;
 CREATE TABLE IF NOT EXISTS `topics` (
-  `topic_id` int(8) NOT NULL AUTO_INCREMENT,
+  `topic_id` int(255) NOT NULL AUTO_INCREMENT,
   `topic_subject` varchar(255) NOT NULL,
   `topic_date` datetime NOT NULL,
-  `topic_cat` int(8) NOT NULL,
-  `topic_by` int(8) NOT NULL,
+  `topic_cat` int(255) NOT NULL,
+  `topic_by` int(255) NOT NULL,
+  `last_post` varchar(255) NOT NULL,
   PRIMARY KEY (`topic_id`),
   KEY `topic_by` (`topic_by`),
   KEY `topic_cat` (`topic_cat`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `topics`
 --
 
-INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`) VALUES
-(1, 'Réveil', '0009-12-18 00:00:00', 1, 1);
+INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`, `last_post`) VALUES
+(5, 'Mon réveil ne marche pas...', '2019-01-18 22:39:31', 10, 15, ''),
+(4, 'Merci Jabasof !', '2019-01-18 22:39:31', 1, 15, ''),
+(6, 'Mon chat est malade', '2019-01-20 13:56:05', 1, 15, 'Bonjour Ã  tous, pouvez vous m\'aider ?'),
+(7, 'Mon chat est malade', '2019-01-20 13:56:05', 1, 15, 'Bonjour Ã  tous, pouvez vous m\'aider ?');
 
 -- --------------------------------------------------------
 
@@ -208,24 +224,24 @@ INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `t
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
-  `user_id` int(8) NOT NULL AUTO_INCREMENT,
+  `user_id` int(255) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(30) NOT NULL,
   `user_pass` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `user_date` datetime NOT NULL,
-  `user_level` int(8) NOT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `user_name_unique` (`user_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `user_name_unique` (`user_name`),
+  UNIQUE KEY `user_email_unique` (`user_email`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `user_date`, `user_level`) VALUES
-(11, 'add', 'a', 'a@a.com', '2018-12-10 15:34:17', 0),
-(9, 'UserTest', 'test', 'helloworld@gmail.com', '2018-12-09 22:28:07', 0),
-(7, 'Olorin', 'a', 'ectorgomez27@aol.com', '2018-12-09 21:56:44', 0);
+INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `user_date`) VALUES
+(15, 'TestBoi', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'testBoi@gmail.com', '2019-01-16 11:10:17'),
+(9, 'UserTest', 'test', 'helloworld@gmail.com', '2018-12-09 22:28:07'),
+(7, 'Olorin', 'a', 'ectorgomez27@aol.com', '2018-12-09 21:56:44');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
