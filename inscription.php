@@ -1,6 +1,6 @@
 <?php
 
-//include 'connect.php'; ?>
+include 'connect.php'; ?>
 
 <br>
 <center>
@@ -48,11 +48,27 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
     if (isset($_POST['user_name'])) {
         //le nom d'utilisateur existe déjà
         if (!ctype_alnum($_POST['user_name'])) {
-            $errors[] = 'Nom d\'utilisateur déjà utilisé.';
+            $errors[] = 'Nom d\'utilisateur ne doit contenir que des chiffres et des lettres..';
         }
-        if (!ctype_alnum($_POST['user_email'])) {
+        $username = $_POST['user_name'];
+        if($username != "") {
+            $result = mysqli_query($link,"SELECT * FROM users where user_name='".$username."'");
+            $num_rows = mysqli_num_rows($result);
+            if($num_rows >= 1){
+                $errors[] = 'Ce nom d\'utilisateur est déjà utilisé.';
+            }
+        }
+        $email = $_POST['user_email'];
+        if($email != "") {
+            $result = mysqli_query($link,"SELECT * FROM users where user_email='".$email."'");
+            $num_rows = mysqli_num_rows($result);
+            if($num_rows >= 1){
+                $errors[] = "Cet email est déjà utilisé.";
+            }
+        }
+        /*if (!ctype_alnum($_POST['user_email'])) {
             $errors[] = 'Cet email est déjà utilisé.';
-        }
+        }*/
         if (strlen($_POST['user_name']) > 30) {
             $errors[] = 'Le nom d\'utilisateur ne peut pas dépasser 30 caractères.';
         }
