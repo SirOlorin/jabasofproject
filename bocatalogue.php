@@ -1,6 +1,6 @@
 <html>
     <head><meta charset="utf-8"></head>
-<form style="font-family: sans-serif;color: #943232;" action="add.php" method="post">
+<form style="font-family: sans-serif;color: #943232;" action="boadd.php" method="post">
   Nom : <br>
   <input id="field" type="text" name="name" value="" placeholder="" style="font-family: sans-serif;color: #943232;font-size: 20px;" autofocus="" required>
   <br>
@@ -12,31 +12,31 @@
    ID : <br>
   <input id="field" type="text" name="id" value="" placeholder="" style="font-family: sans-serif;color: #943232;font-size: 20px;" autofocus="" required>
   <br>
-  <input type="submit" id="button" value="Ajouter" style="font-size: 20px;"> <a href="add.php" style="font-size:10px;"></a>
+  <input type="submit" id="button" value="Ajouter" style="font-size: 20px;"> <a href="boadd.php" style="font-size:10px;"></a>
 </form><br>
 ----------------------------------------------
     <br><br>
     
-    <form style="font-family: sans-serif;color: #943232;" action="delete.php" method="post">
+    <form style="font-family: sans-serif;color: #943232;" action="bodelete.php" method="post">
   Nom : <br>
   <input id="field" type="text" name="name" value="" placeholder="" style="font-family: sans-serif;color: #943232;font-size: 20px;" autofocus="" required>
   <br>
   
-  <input type="submit" id="button" value="Supprimer" style="font-size: 20px;"> <a href="delete.php" style="font-size:10px;"></a>
+  <input type="submit" id="button" value="Supprimer" style="font-size: 20px;"> <a href="bodelete.php" style="font-size:10px;"></a>
     </form>
     ----------------------------------------------
     <br><br>
 
     
     
-    <form style="font-family: sans-serif;color: #943232;" action="edit.php" method="post">
+    <form style="font-family: sans-serif;color: #943232;" action="boedit.php" method="post">
   <b>Modifier une fonctionnalité</b> : <br><br><br>
   
   Nom de la rubrique à modifier : <br>
   <input id="field" type="text" name="name" value="" placeholder="" style="font-family: sans-serif;color: #943232;font-size: 20px;" autofocus="" required>
   <br>
   
-  <input type="submit" id="button" value="Modifier" style="font-size: 20px;"> <a href="edit.php" style="font-size:10px;"></a>
+  <input type="submit" id="button" value="Modifier" style="font-size: 20px;"> <a href="boedit.php" style="font-size:10px;"></a>
     </form>
     ----------------------------------------------
     <br><br>
