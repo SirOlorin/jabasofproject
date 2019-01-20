@@ -49,7 +49,7 @@ else
             {
 
                 echo '<form method="post" action="">
-                        Subject: <input type="text" name="topic_subject" />
+                        Titre : <input type="text" name="topic_subject" />
                         Catégorie:';
 
                 echo '<select name="topic_cat">';
@@ -87,10 +87,12 @@ else
                             topics(topic_subject,
                                    topic_date,
                                    topic_cat,
+                                   last_post,
                                    topic_by)
                        VALUES('" . mysqli_real_escape_string($link, $_POST['topic_subject']) . "',
                                    NOW(),
                                    " . mysqli_real_escape_string($link, $_POST['topic_cat']) . ",
+                                   '" . mysqli_real_escape_string($link, $_POST['post_content']) . "',
                                    " . $_SESSION['user_id'] . "
                                    )";
 
