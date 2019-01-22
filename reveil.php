@@ -1,7 +1,7 @@
 <title>Page Réveil</title>
 <link rel="stylesheet" type="text/css" href="page_reveil.css">
 
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Réveil</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">Réveil</h2></center>
 <br>
 <br>
 <form action="?page=addreveil" method="post">

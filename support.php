@@ -1,6 +1,6 @@
 <html>
 <br>
-<center><h2 style="font-family:sans-serif; color: white; font-size: 200px;">SUPPORT</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 200px;">SUPPORT</h2></center>
 
 <div>
     <center>

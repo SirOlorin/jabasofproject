@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="page_reveil.css">
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Modification de réveil</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">Modification de réveil</h2></center>
 <?php
 $bdd = new PDO("mysql:host=127.0.0.1;dbname=jabasof;charset=utf8", "root", "");
 if(isset($_POST['submit'], $_GET['id'])) {

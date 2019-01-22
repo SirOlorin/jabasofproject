@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="demomap.css">
 </head>
 <body>
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Sécurité</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">Sécurité</h2></center>
 <figure class="carte">
 <img src="plan.png" width="967" height="455" alt="plan" usemap="#plan">
 </figure>

@@ -2,7 +2,7 @@
 <link rel="stylesheet" type="text/css" href="accueil.css">
 <br>
 
-<center><h2 style="font-family:sans-serif; color: white; font-size: 200px;">ACCUEIL</h2></center>
+<center><h2 style="font-family:sans-serif; color: #373737; font-size: 200px;">ACCUEIL</h2></center>
 
 <!--
 <div id="block page">
@@ -79,7 +79,7 @@ $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYS
 $getcontent = $bdd->query("SELECT * FROM `pageaccueil`");
 while($result=$getcontent->fetch()){
     echo
-        '<div class="bandeau">
+        '<div class="container">
     <figure class="carte" id="confort">
         <img src="'
         .

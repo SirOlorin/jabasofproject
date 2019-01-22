@@ -2,7 +2,7 @@
 <html>
 <link rel="stylesheet" href="ajout.css">
 <body>
-<center><h2 style="font-family:sans-serif; color: white; font-size: 100px;">Catalogue</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 100px;">Catalogue</h2></center>
 
 <div class="center">
 <div id="myBtnContainer">

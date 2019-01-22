@@ -2,55 +2,9 @@
 <title>FAQ</title>
 
 <br>
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Foire à Questions</h2></center>
+<center><h2 style="font-family:sans-serif; color: BLACK; font-size: 50px;">Foire à Questions</h2></center>
 
 
-<div class="container" ; id="contx" ; style="background-color:#666666; height:300px">
-
-    <p class="title" ; style="font-family:sans-serif">Question x</p>
-
-    <div class="overlay"></div>
-    <div class="button">
-        <button id="butprop" onclick="myFunctionx(); contsizex() " ;
-                style="font-family:sans-serif; background-color: none;color: white; border: 2px solid white;width:70px;height: 25px">
-            Afficher
-        </button>
-        <br>
-        <div id="myDIVx" style="color:white; font-family:sans-serif">
-            <br>
-            "Question x"
-
-        </div>
-    </div>
-</div>
-
-
-
-<script>
-    var xx = document.getElementById("myDIVx");
-    var yx = document.getElementById("contx");
-    xx.style.display = "none";
-    function myFunctionx() {
-        var xx = document.getElementById("myDIVx");
-        if ((xx.style.display == "none")) {
-            xx.style.display = "block";
-
-        } else {
-            xx.style.display = "none";
-
-        }
-
-    }
-
-    function contsizex() {
-        if (yx.style.height != '500px') {
-            yx.style.height = '500px';
-        }
-        else {
-            yx.style.height = '300px';
-        }
-    }
-</script>
 
 
 </html>

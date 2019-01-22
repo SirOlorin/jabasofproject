@@ -9,11 +9,15 @@ html, body {
     padding:0;
 }
 body {
-    background:#ccc;
+    background: ghostwhite;
 }
 
 nav {
     font-family: helvetica;
+}
+
+h3,h2,h1,p {
+    font-family: sans-serif;
 }
 
 .space {
@@ -25,17 +29,6 @@ nav {
     height:80px;
 }
 
-.site-footer { /* au cas ou on voudrait normaliser le footer */
-    position: static;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    z-index: 10000;
-    height: 80px;
-    padding:0 10px;
-    background:rgba(0,0,0,0.8);
-    color:#fff;
-}
 
 .site-header {
     position: fixed;
@@ -48,8 +41,8 @@ nav {
     padding-right: 10px;
     padding-left: 10px;
     padding-bottom: 0;
-    background:rgba(0,0,0,0.8);
-    color:#fff;
+    background:white;
+    color: #373737;
     display:flex;
     align-items:center;
 }
@@ -81,11 +74,11 @@ nav {
     padding:0 25px;
 }
 .dropmenu > li:hover > a {
-    background:red;
+    background: dodgerblue;
 }
 .dropmenu a {
     text-decoration:none;
-    color:#fff;
+    color: #373737;
 }
 .subwrap {
     position:fixed;
@@ -117,6 +110,10 @@ li:hover .subwrap {
     display: flex;
     justify-content: space-around;
     font-family: Arial;
-    padding-top: 100px;
-    margin-bottom: 50px;
+    padding-top: 80px;
+    padding-bottom : 80px;
+    background: dodgerblue;
+    text-decoration: none;
+    margin-top : 80px;
+    margin-bottom : 50px;f
 }

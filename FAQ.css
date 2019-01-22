@@ -2,9 +2,7 @@ input{
     z-index: 0;
 }
 
-body {
-background-image:url("background.jpg");
-}
+
 
 .backoffice {
     text-align: left;
@@ -29,15 +27,7 @@ background-image:url("background.jpg");
     min-width: 1280px;
 }
 
-header
-{
-    background: 0000;
-    display: flex;
-    width: 25%;
-    min-width: 1280px;
 
-    align-items: baseline;
-}
 
 
 #container {
@@ -72,12 +62,12 @@ cursor:pointer;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0);
+  background: #032472;
   transition: background 0.5s ease;
 }
 .container:hover .overlay {
   display: block;
-  background: rgba(0, 0, 0, .3);
+  background: #2196F3s;
 }
 .title {
   position: absolute;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 22 jan. 2019 à 20:57
+-- Généré le :  mar. 22 jan. 2019 à 14:50
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -115,7 +115,6 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `cat_id` int(8) NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(255) NOT NULL,
   `cat_description` varchar(255) NOT NULL,
-  `last_topic` varchar(255) NOT NULL,
   PRIMARY KEY (`cat_id`),
   UNIQUE KEY `cat_name_unique` (`cat_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -124,9 +123,11 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Déchargement des données de la table `categories`
 --
 
-INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`, `last_topic`) VALUES
-(4, 'Retours utilisateurs', 'Exprimez ici votre satisfaction/mecontentement !', 'Merci Jabasof !'),
-(10, 'Support', 'Posez ici vos question techniques !', 'None');
+INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`) VALUES
+(1, 'Support', 'Posez vos question ici !'),
+(5, 'transport', 'aaa'),
+(4, 'Test', 'Ceci est un exercice.'),
+(10, 'CatÃ©gorie', 'Description');
 
 -- --------------------------------------------------------
 
@@ -151,26 +152,16 @@ INSERT INTO `client` (`nom`, `prenom`, `mail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fonction`
+-- Structure de la table `fonctions`
 --
 
-DROP TABLE IF EXISTS `fonction`;
-CREATE TABLE IF NOT EXISTS `fonction` (
-  `fct_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(256) NOT NULL,
-  `description` text NOT NULL,
-  `tag` varchar(256) NOT NULL,
-  PRIMARY KEY (`fct_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `fonction`
---
-
-INSERT INTO `fonction` (`fct_id`, `name`, `description`, `tag`) VALUES
-(1, 'lumière', 'allumer/éteindre la lumière', 'fonctionnalité'),
-(2, 'test', 'test + modif', 'test'),
-(3, 'test2', 'test2', 'objets');
+DROP TABLE IF EXISTS `fonctions`;
+CREATE TABLE IF NOT EXISTS `fonctions` (
+  `fct_id` int(11) NOT NULL,
+  `fct_name` varchar(32) NOT NULL,
+  `fct_description` text NOT NULL,
+  `fct_categorie` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -184,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `houselinks` (
   `house_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`houselink_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `houselinks`
@@ -198,8 +189,7 @@ INSERT INTO `houselinks` (`houselink_id`, `house_id`, `user_id`) VALUES
 (5, 4, 2),
 (15, 4, 3),
 (7, 4, 5),
-(8, 4, 6),
-(16, 8, 1);
+(8, 4, 6);
 
 -- --------------------------------------------------------
 
@@ -227,7 +217,7 @@ INSERT INTO `houses` (`house_id`, `house_name`, `admin_id`) VALUES
 (5, 'la casa 2', ''),
 (6, 'Main House', 'admin'),
 (7, 'Map Demo House', '1'),
-(8, 'New', '1');
+(8, 'Allez', '1');
 
 -- --------------------------------------------------------
 
@@ -367,26 +357,22 @@ INSERT INTO `technique` (`nom`, `prenom`, `mail`) VALUES
 
 DROP TABLE IF EXISTS `topics`;
 CREATE TABLE IF NOT EXISTS `topics` (
-  `topic_id` int(255) NOT NULL AUTO_INCREMENT,
+  `topic_id` int(8) NOT NULL AUTO_INCREMENT,
   `topic_subject` varchar(255) NOT NULL,
   `topic_date` datetime NOT NULL,
-  `topic_cat` int(255) NOT NULL,
-  `topic_by` int(255) NOT NULL,
-  `last_post` varchar(255) NOT NULL,
+  `topic_cat` int(8) NOT NULL,
+  `user_id` int(8) NOT NULL,
   PRIMARY KEY (`topic_id`),
-  KEY `topic_by` (`topic_by`),
+  KEY `topic_by` (`user_id`),
   KEY `topic_cat` (`topic_cat`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `topics`
 --
 
-INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`, `last_post`) VALUES
-(18, 'C\'est reparti !', '2019-01-22 19:07:52', 4, 15, 'Comme en 40 !'),
-(17, 'Voyons si Ã§a marche', '2019-01-22 13:35:00', 10, 1, 'Comment Ã§a marche ?'),
-(15, 'Merci Jabasof !', '2019-01-22 12:28:53', 4, 18, 'On vous aime !'),
-(16, 'Metro', '2019-01-22 12:46:52', 5, 18, 'J\'aime pas la ligne 13, et vous ?');
+INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `user_id`) VALUES
+(1, 'Réveil', '0009-12-18 00:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -416,7 +402,8 @@ INSERT INTO `users` (`user_id`, `user_name`, `user_lastname`, `user_firstname`, 
 (1, 'admin', 'CHABCHOUB', 'Yousra', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.com', '2019-01-17 19:11:12'),
 (3, 'momo', NULL, NULL, '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', 'momo@moom.fr', '2019-01-19 20:25:02'),
 (4, 'test1', 'TEST1', 'Test1', 'lol', 'test1@test.com', '2019-01-20 15:43:16'),
-(5, 'TEST2', 'TEST2', 'Test2', 'lol', 'test2@test.com', '2019-01-20 15:43:16');
+(5, 'test2', 'TEST2', 'Test2', 'lol', 'test2@test.com', '2019-01-20 15:43:16'),
+(6, 'test3', 'TEST3', 'Test3', 'lol', 'test3@test.com', '2019-01-20 15:43:16');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

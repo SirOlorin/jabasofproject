@@ -9,7 +9,7 @@ session_start();
 </head>
 
 <header class="site-header">
-    <a href="?page=accueil"><img class="logo" src="https://puu.sh/Cf2Kj/3062eb08b0.png"></div></a>
+    <a href="?page=accueil"><img class="logo" src="https://puu.sh/CeGAz/cf6de68172.png"></div></a>
 
     <nav>
         <ul class="dropmenu">
@@ -21,7 +21,7 @@ session_start();
                 </div>
             </li>
 
-            <li><a href="#">Aide</a>
+            <li><a>Aide</a>
                 <div class="subwrap">
                     <ul class="sub">
                         <li><a href="?page=forum">Forum</a></li>
@@ -39,12 +39,8 @@ session_start();
                 <div class="subwrap">
                 </div>
             </li>
-            <li><a>Paramètres</a>
-                <div class="subwrap">
-                    <ul class="sub">
-                        <li><a href="?page=ajout">Ajouter des fonctionnalités</a></li>
-                        <li><a href="?page=logout">Déconnexion</a></li>
-                    </ul>
+            <li><a href="?page=ajout">Catalogue</a>
+                <div class="subwrap">            
                 </div>
             </li>
                 <li><a href="?page=member">Espace Membre</a>

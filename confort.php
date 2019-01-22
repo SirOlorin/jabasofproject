@@ -5,7 +5,7 @@
 <title>Maison X</title>
 <link rel="stylesheet" type="text/css" href="house.css">
 
-<center><h2 style="font-family:sans-serif; color: white; font-size: 100px;">Maison</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 100px;">Maison</h2></center>
 
 <div class="container">
     <div class="button">

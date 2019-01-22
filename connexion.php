@@ -3,7 +3,7 @@
 include 'connect.php'; ?>
 
 <br>
-<center><h2 style="font-family:sans-serif; color: white; font-size: 100px;">CONNEXION</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 100px;">CONNEXION</h2></center>
 <?php
 
 

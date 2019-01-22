@@ -1,12 +1,14 @@
 <link rel="stylesheet" type="text/css" href="memberedit.css">
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Modifier le profil</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">Modifier le profil</h2></center>
 
 <?php
 $bdd = new PDO("mysql:host=127.0.0.1;dbname=jabasof;charset=utf8", "root", "");
 
 
-
-if(isset($_GET['value'], $_SESSION['user_id'])) {
+if(isset($_GET['id']) AND $_SESSION['user_id']==1){
+    $id=htmlspecialchars($_GET['id']);
+    $value = htmlspecialchars($_GET['value']);
+}else if(isset($_GET['value'], $_SESSION['user_id'])) {
     $id=htmlspecialchars($_SESSION['user_id']);
     $value = htmlspecialchars($_GET['value']);
 }else{
@@ -60,7 +62,7 @@ while($result=$getcontent->fetch()) {
 
 if(isset($_POST['mdp'], $_SESSION['user_id'])) {
     if( !empty($_POST['password']) AND ($_POST['password2'])) {
-        $id = $_SESSION['user_id'];
+
         $password = sha1($_POST['password']);
         $password2 = sha1($_POST['password2']);
         $oldpassword = sha1($_POST['oldpassword']);
@@ -90,7 +92,7 @@ if(isset($_POST['mdp'], $_SESSION['user_id'])) {
 
 if(isset($_POST['submit'], $_SESSION['user_id'])) {
     if( !empty($_POST['newvalue'])) {
-        $id = $_SESSION['user_id'];
+
         $newvalue = $_POST['newvalue'];
         if ($value=='user_name'){
             $set = $bdd->prepare("UPDATE `users` SET `user_name`=? WHERE user_id=?");

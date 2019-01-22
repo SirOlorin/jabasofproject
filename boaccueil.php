@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="accueil.css">
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Modifier la page d'accueil</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">Modifier la page d'accueil</h2></center>
 
 
 <br>

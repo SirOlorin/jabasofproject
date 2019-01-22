@@ -1,7 +1,7 @@
  <title>Fonctionnalités</title>
  <link rel="stylesheet" href="board_temp.css">
 
-<center><h2 style="font-family:sans-serif; color: white; font-size: 100px;">Tableau de Bord</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 100px;">Tableau de Bord</h2></center>
 <div class="container">
 <figure class="carte" id="confort">
     <img src="https://freshidees.com/wp-content/uploads/2017/04/pouf-geant-1-410x390.jpg" alt="confort"/>

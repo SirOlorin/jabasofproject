@@ -1,4 +1,4 @@
-<center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Espace d'administration</h2></center>
+<center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">Espace d'administration</h2></center>
 
 
 <div class="container">

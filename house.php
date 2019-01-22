@@ -1,13 +1,13 @@
 <?php
 if(isset($_GET['id']) AND isset($_SESSION['user_id'])){
 
-    $houseid=$_GET['id'];
-    $user_id=$_SESSION['user_id'];
+    $houseid=$_GET['houseid'];
+    $user_id=$_GET['userid'];
     $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
 
     $reqlink = $bdd -> query('SELECT `houselink_id` FROM `houselinks` WHERE `house_id`= '.$houseid.' AND `user_id`='.$user_id);
     $userlink = $reqlink -> rowCount();
-    if ($userlink>0) {
+    if ($userlink>0 OR $_SESSION['user_id']==1) {
 
 
         if (isset($_POST['deletehousemember'])) {
@@ -120,7 +120,7 @@ if(isset($_GET['id']) AND isset($_SESSION['user_id'])){
             $houseadmin = $result['admin_id'];
             echo '
             <div class="titlecont">
-            <center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">' . $result['house_name'] . '</h2></center>
+            <center><h2 style="font-family:sans-serif; color: black; font-size: 50px;">' . $result['house_name'] . '</h2></center>
             <button onclick="show3()">Renommer</button>
                     <form id="shownElement3" action="" method="post">
                         <input type="text" name="newname" placeholder="Entrez le nouveau nom">
