@@ -82,7 +82,7 @@ else
                     }
                     echo '<tr>';
                     echo '<td class="leftpart">';
-                    echo "<h3><a href='topic.php?topic_id=$save'> '" . $row['topic_subject'] . "'</a><h3>";
+                    echo "<h3><a href='topic.php?topic_id=".$row['topic_id']."'> '" . $row['topic_subject'] . "'</a><h3>";
                     echo '</td>';
                     echo '<td class="rightpart">';
                     echo  'par ' . $_SESSION['user_name'] . ' le : ';

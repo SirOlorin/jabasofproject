@@ -10,7 +10,7 @@ $sql = "SELECT
         FROM
             topics
         WHERE
-            topic_cat = '" . mysqli_real_escape_string($link, $save) . "'";
+            topic_id = '" . mysqli_real_escape_string($link, $save) . "'";
 
 mysqli_query($link, $sql);
 $result = mysqli_query($link, $sql);
@@ -100,7 +100,7 @@ else
                     echo '</td>';
                     echo '</tr>';
                 }
-
+                echo $save;
                 echo "<form method='post' action='reply.php?post_id=$save'>
                     <textarea name='reply-content'></textarea>
                     <input type='submit' value='Poster réponse' />
