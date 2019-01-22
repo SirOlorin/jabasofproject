@@ -11,7 +11,7 @@ include 'connect.php'; ?>
 if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
 
     echo 'Vous êtes connecté, cliquez ici <a href="logout.php">se déconnecter</a> pour vous déconnecter.';
-    echo $_SESSION['user_id'];
+
 } else {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 

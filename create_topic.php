@@ -96,7 +96,6 @@ else
                                    " . $_SESSION['user_id'] . "
                                    )";
 
-            mysqli_query($link, $sql);
             $result = mysqli_query($link, $sql);
             if(!$result)
             {
@@ -123,7 +122,6 @@ else
                                       " . $_SESSION['user_id'] . "
                                 )";
 
-                mysqli_query($link, $sql2);
                 $result = mysqli_query($link, $sql2);
 
                 if(!$result)
@@ -131,17 +129,15 @@ else
                     //something went wrong, display the error
                     echo 'Une erreur est survenu lors de l\'insertion de votre sujet. Veuillez réessayer ultérieurement.' . mysqli_error($link);
                     $sql = "ROLLBACK;";
-                    mysqli_query($link, $sql);
                     $result = mysqli_query($link, $sql);
                 }
                 else
                 {
                     $sql = "COMMIT;";
-                    mysqli_query($link, $sql);
                     $result = mysqli_query($link, $sql);
 
                     //after a lot of work, the query succeeded!
-                    echo 'Vous avez crée <a href="topic.php?id='. $topicid . '">,votre nouveau sujet</a>.';
+                    echo 'Vous avez crée <a href="topic.php?topic_id=" . $topicid . "">,votre nouveau sujet</a>.';
                 }
             }
         }
