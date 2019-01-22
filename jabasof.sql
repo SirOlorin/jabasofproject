@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 22 jan. 2019 à 17:33
+-- Généré le :  mar. 22 jan. 2019 à 14:50
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -53,6 +53,58 @@ INSERT INTO `alarmclock` (`id`, `name`, `frequency`, `val1`, `val2`, `time`) VAL
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `cameras`
+--
+
+DROP TABLE IF EXISTS `cameras`;
+CREATE TABLE IF NOT EXISTS `cameras` (
+  `camera_id` int(11) NOT NULL AUTO_INCREMENT,
+  `camera_url` text NOT NULL,
+  `room_id` int(11) NOT NULL,
+  PRIMARY KEY (`camera_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `cameras`
+--
+
+INSERT INTO `cameras` (`camera_id`, `camera_url`, `room_id`) VALUES
+(1, 'https://ak5.picdn.net/shutterstock/videos/4768655/thumb/5.jpg', 3),
+(2, 'https://ak4.picdn.net/shutterstock/videos/772624/thumb/7.jpg', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `captors`
+--
+
+DROP TABLE IF EXISTS `captors`;
+CREATE TABLE IF NOT EXISTS `captors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(32) NOT NULL,
+  `state` varchar(32) NOT NULL,
+  `id_room` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `catalog`
+--
+
+DROP TABLE IF EXISTS `catalog`;
+CREATE TABLE IF NOT EXISTS `catalog` (
+  `item_id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_name` varchar(32) NOT NULL,
+  `item_tag` varchar(32) NOT NULL,
+  `item_description` text NOT NULL,
+  PRIMARY KEY (`item_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `categories`
 --
 
@@ -61,7 +113,6 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `cat_id` int(8) NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(255) NOT NULL,
   `cat_description` varchar(255) NOT NULL,
-  `last_topic` varchar(255) NOT NULL,
   PRIMARY KEY (`cat_id`),
   UNIQUE KEY `cat_name_unique` (`cat_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -70,9 +121,101 @@ CREATE TABLE IF NOT EXISTS `categories` (
 -- Déchargement des données de la table `categories`
 --
 
-INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`, `last_topic`) VALUES
-(4, 'Retours utilisateurs', 'Exprimez ici votre satisfaction/mecontentement !', 'Merci Jabasof !'),
-(10, 'Support', 'Posez ici vos question techniques !', 'None');
+INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`) VALUES
+(1, 'Support', 'Posez vos question ici !'),
+(5, 'transport', 'aaa'),
+(4, 'Test', 'Ceci est un exercice.'),
+(10, 'CatÃ©gorie', 'Description');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `client`
+--
+
+DROP TABLE IF EXISTS `client`;
+CREATE TABLE IF NOT EXISTS `client` (
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `client`
+--
+
+INSERT INTO `client` (`nom`, `prenom`, `mail`) VALUES
+('PUTMAN', 'Olivia', 'o.putman@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `fonctions`
+--
+
+DROP TABLE IF EXISTS `fonctions`;
+CREATE TABLE IF NOT EXISTS `fonctions` (
+  `fct_id` int(11) NOT NULL,
+  `fct_name` varchar(32) NOT NULL,
+  `fct_description` text NOT NULL,
+  `fct_categorie` varchar(32) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `houselinks`
+--
+
+DROP TABLE IF EXISTS `houselinks`;
+CREATE TABLE IF NOT EXISTS `houselinks` (
+  `houselink_id` int(11) NOT NULL AUTO_INCREMENT,
+  `house_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  PRIMARY KEY (`houselink_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `houselinks`
+--
+
+INSERT INTO `houselinks` (`houselink_id`, `house_id`, `user_id`) VALUES
+(1, 1, 2),
+(2, 2, 2),
+(3, 4, 1),
+(4, 6, 1),
+(5, 4, 2),
+(15, 4, 3),
+(7, 4, 5),
+(8, 4, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `houses`
+--
+
+DROP TABLE IF EXISTS `houses`;
+CREATE TABLE IF NOT EXISTS `houses` (
+  `house_id` int(11) NOT NULL AUTO_INCREMENT,
+  `house_name` varchar(32) NOT NULL,
+  `admin_id` varchar(32) NOT NULL,
+  PRIMARY KEY (`house_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `houses`
+--
+
+INSERT INTO `houses` (`house_id`, `house_name`, `admin_id`) VALUES
+(1, 'Maison 1', ''),
+(2, 'Maison 2', ''),
+(3, 'la casa', ''),
+(4, 'Rock House', '1'),
+(5, 'la casa 2', ''),
+(6, 'Main House', 'admin'),
+(7, 'Map Demo House', '1'),
+(8, 'Allez', '1');
 
 -- --------------------------------------------------------
 
@@ -141,16 +284,19 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`post_id`),
   KEY `post_topic` (`post_topic`),
   KEY `post_by` (`post_by`)
-) ENGINE=MyISAM AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `posts`
 --
 
 INSERT INTO `posts` (`post_id`, `post_content`, `post_date`, `post_topic`, `post_by`) VALUES
-(46, ':D', '2019-01-22 13:22:52', 4, 1),
-(44, 'J\'aime pas la ligne 13, et vous ?', '2019-01-22 12:46:52', 16, 18),
-(47, 'Comment Ã§a marche ?', '2019-01-22 13:35:00', 17, 1);
+(10, 'Cool life bro.', '2019-01-01 00:00:00', 10, 15),
+(33, 'kek', '2019-01-20 15:04:29', 10, 15),
+(32, 'Lul', '2019-01-20 15:03:04', 10, 15),
+(31, 'Il vole ? Je sors...', '2019-01-20 15:02:11', 10, 15),
+(30, 'Essaye de le redÃ©marrer.', '2019-01-20 14:57:38', 10, 15),
+(29, 'Essaye de le redÃ©marrer.', '2019-01-20 14:57:38', 10, 15);
 
 -- --------------------------------------------------------
 
@@ -186,6 +332,30 @@ INSERT INTO `rooms` (`id`, `name`, `movedetect`, `light`, `temperature`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `technique`
+--
+
+DROP TABLE IF EXISTS `technique`;
+CREATE TABLE IF NOT EXISTS `technique` (
+  `nom` varchar(255) NOT NULL,
+  `prenom` varchar(255) NOT NULL,
+  `mail` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `technique`
+--
+
+INSERT INTO `technique` (`nom`, `prenom`, `mail`) VALUES
+('DUVAL', 'Bernard', 'b.duval@gmail.com'),
+('qsdrg', 'qdsfg', 'sdg@sqdg'),
+('sdg', 'qsedg', 'qsdfg@qsdg'),
+('', '', ''),
+('qsdf', 'qsdf', 'qsdf@fqsdf');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `topics`
 --
 
@@ -200,16 +370,17 @@ CREATE TABLE IF NOT EXISTS `topics` (
   PRIMARY KEY (`topic_id`),
   KEY `topic_by` (`topic_by`),
   KEY `topic_cat` (`topic_cat`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `topics`
 --
 
 INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `topic_by`, `last_post`) VALUES
-(17, 'Voyons si Ã§a marche', '2019-01-22 13:35:00', 10, 1, 'Comment Ã§a marche ?'),
-(15, 'Merci Jabasof !', '2019-01-22 12:28:53', 4, 18, 'On vous aime !'),
-(16, 'Metro', '2019-01-22 12:46:52', 5, 18, 'J\'aime pas la ligne 13, et vous ?');
+(5, 'Mon réveil ne marche pas...', '2019-01-18 22:39:31', 10, 15, ''),
+(4, 'Merci Jabasof !', '2019-01-18 22:39:31', 1, 15, ''),
+(6, 'Mon chat est malade', '2019-01-20 13:56:05', 1, 15, 'Bonjour Ã  tous, pouvez vous m\'aider ?'),
+(7, 'Mon chat est malade', '2019-01-20 13:56:05', 1, 15, 'Bonjour Ã  tous, pouvez vous m\'aider ?');
 
 -- --------------------------------------------------------
 
@@ -227,7 +398,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name_unique` (`user_name`),
   UNIQUE KEY `user_email_unique` (`user_email`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
@@ -236,10 +407,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`user_id`, `user_name`, `user_pass`, `user_email`, `user_date`) VALUES
 (15, 'TestBoi', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'testBoi@gmail.com', '2019-01-16 11:10:17'),
 (9, 'UserTest', 'test', 'helloworld@gmail.com', '2018-12-09 22:28:07'),
-(7, 'Olorin', 'a', 'ectorgomez27@aol.com', '2018-12-09 21:56:44'),
-(16, 'anothertest', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'anothertest@gmail.com', '2019-01-20 16:24:00'),
-(17, 'Olorinn', '7e240de74fb1ed08fa08d38063f6a6a91462a815', 'a@a.com', '2019-01-20 16:35:29'),
-(1, 'Admin', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 'admin@gmail.com', '2019-01-22 12:17:42');
+(7, 'Olorin', 'a', 'ectorgomez27@aol.com', '2018-12-09 21:56:44');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

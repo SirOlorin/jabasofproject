@@ -11,8 +11,8 @@
 
 <?php
 
-echo '<form action="?page=addhouse&user='.$_SESSION['user_id'].'" method="post">
-    <input type="submit" name="addhouse" value="Ajouter une maison">
+echo '<form action="?page=addhouse" method="post">
+    <input type="submit" value="Ajouter une maison">
 </form>';
 
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));

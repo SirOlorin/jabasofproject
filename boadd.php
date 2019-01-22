@@ -2,7 +2,7 @@
 $servername = "localhost:3306";
 $username = "root";
 $password = "";
-$dbname = "forum";
+$dbname = "jabasof";
 
 
 // Create connection

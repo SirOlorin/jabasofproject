@@ -44,11 +44,10 @@
 </html>
 
 <?php
-   header('Content-Type: text/html; charset=ISO-8859-1');
-$servername = "localhost:3306";
+$servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "forum";
+$dbname = "jabasof";
 
 
 // Create connection
@@ -60,7 +59,7 @@ if ($conn->connect_error) {
   
 }
 
-$list = "SELECT * from fonction";
+$list = "SELECT * from fonctions";
 
 $result = mysqli_query($conn,$list);
 if (!$result) {
@@ -79,10 +78,10 @@ echo "<table border='1'>
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
-echo "<td>" . $row['name'] . "</td>";
-echo "<td>" . $row['description'] . "</td>";
-echo "<td>" . $row['id'] . "</td>";
-echo "<td>" . $row['categorie'] . "</td>";
+echo "<td>" . $row['fct_name'] . "</td>";
+echo "<td>" . $row['fct_description'] . "</td>";
+echo "<td>" . $row['fct_id'] . "</td>";
+echo "<td>" . $row['fct_categorie'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";

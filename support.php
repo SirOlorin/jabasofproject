@@ -8,11 +8,10 @@
         <h3>Client</h3>
     </html>
 <?php
-header('Content-Type: text/html; charset=ISO-8859-1');
-$servername = "localhost:3306";
-$username = "Jabasof";
-$password = "jabasof";
-$dbname = "forum";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "jabasof";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -57,11 +56,7 @@ echo "</table>";
         <h3>Technique</h3>
 </html>
 <?php
-header('Content-Type: text/html; charset=ISO-8859-1');
-$servername = "localhost:3306";
-$username = "Jabasof";
-$password = "jabasof";
-$dbname = "forum";
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
