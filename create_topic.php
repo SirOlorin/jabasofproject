@@ -135,9 +135,8 @@ else
                 {
                     $sql = "COMMIT;";
                     $result = mysqli_query($link, $sql);
-
                     //after a lot of work, the query succeeded!
-                    echo 'Vous avez crée <a href="topic.php?topic_id=" . $topicid . "">,votre nouveau sujet</a>.';
+                    echo "Vous avez crée votre nouveau sujet";
                 }
             }
         }
