@@ -85,7 +85,8 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
                         $_SESSION['user_name'] = $row['user_name'];
                     }
 
-                    echo "Bienvenue " . $_SESSION['user_name'] . ", cliquez ici <a href='index.php'> pour revenir à l'accueil.";
+                    echo "Bienvenue " . $_SESSION['user_name'] . ", vous allez être redirigé(e) à l'accueil.";
+                    header( "refresh:1;url=index.php" );
                 }
             }
         }
