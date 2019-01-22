@@ -78,10 +78,10 @@ echo "<table border='1'>
 while($row = mysqli_fetch_array($result))
 {
 echo "<tr>";
-echo "<td>" . $row['fct_name'] . "</td>";
-echo "<td>" . $row['fct_description'] . "</td>";
-echo "<td>" . $row['fct_id'] . "</td>";
-echo "<td>" . $row['fct_categorie'] . "</td>";
+echo "<td>" . $row['name'] . "</td>";
+echo "<td>" . $row['description'] . "</td>";
+echo "<td>" . $row['id'] . "</td>";
+echo "<td>" . $row['categorie'] . "</td>";
 echo "</tr>";
 }
 echo "</table>";

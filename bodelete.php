@@ -14,7 +14,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "DELETE FROM fonction WHERE name LIKE '$x'";
+$sql = "DELETE FROM fonctions WHERE name LIKE '$x'";
 
 
 ?>

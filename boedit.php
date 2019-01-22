@@ -15,7 +15,7 @@ $x=mysqli_real_escape_string($conn,$_POST["name"]);
 
 $err=null;
 
-$check = "SELECT * from fonction where name LIKE '$x'";
+$check = "SELECT * from fonctions where name LIKE '$x'";
 $result = $conn->query($check);
 
 
