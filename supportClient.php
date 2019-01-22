@@ -1,6 +1,5 @@
 <html>
 <center>
-<head><meta charset="utf-8"></head>
     <h1>Admonistrateur : Support Client</h1>
 <form style="font-family: sans-serif;color: #943232;" action="addDB.php" method="post">
     Nom : <br>
@@ -27,11 +26,10 @@
 <b> Contact :<b> <br><br>
 
         <?php
-        header('Content-Type: text/html; charset=ISO-8859-1');
-        $servername = "localhost:3306";
-        $username = "Jabasof";
-        $password = "jabasof";
-        $dbname = "forum";
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "jabasof";
 
         // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
