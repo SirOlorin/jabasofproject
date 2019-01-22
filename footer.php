@@ -3,8 +3,8 @@
 <link rel="stylesheet" type="text/css" href="footer.css">
 
 <footer>
-    <a href="https://www.commentcamarche.net">
-            <div class="footer">Conditions générales d'utilisation<a href="#">Haut de page</a>
+    <a href="?page=mentionslegales">
+            <div class="footer">Mentions légales<a href="#">Haut de page</a>
             </div>
         </a>
 
