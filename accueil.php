@@ -72,8 +72,6 @@
     </div>
     </div>
 -->
-<br>
-<center><a name="presentation"><h1>Jabasof, l'innovation chez vous !</h1></center></a>
 <?php
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
 $getcontent = $bdd->query("SELECT * FROM `pageaccueil`");

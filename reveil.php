@@ -21,7 +21,7 @@ while($result=$getcontent->fetch()) {
     }
     echo
         '
-    <div class="container">
+    <div class="bandeau">
         <figure class="carte">
             <img src="https://i.kinja-img.com/gawker-media/image/upload/s--G7RWtlE9--/c_scale,f_auto,fl_progressive,q_80,w_800/bzxcgjzhlaf9xyb6odxm.jpg" alt="clock">
         </figure>

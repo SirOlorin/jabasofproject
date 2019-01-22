@@ -23,7 +23,7 @@ while($result=$getcontent->fetch()){
         <input type="submit" value="Modifier" />
     </form>
     <form action="?page=deletefaq&id=' . $result['id'] . '" method="post">
-        <input type="submit" name="deletefaq" value="Supprimer" />
+        <input type="submit" name="deleteaccueil" value="Supprimer" />
     </form>
 </div>
 '

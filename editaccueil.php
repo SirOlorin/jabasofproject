@@ -4,17 +4,16 @@
 <?php
 $bdd = new PDO("mysql:host=127.0.0.1;dbname=jabasof;charset=utf8", "root", "");
 if(isset($_POST['submit'], $_GET['id'])) {
-    if( !empty($_POST['title']) AND !empty($_POST['content']) AND !empty($_POST['image'])) {
+    if( !empty($_POST['title']) AND ($_POST['content']) != ($_POST['image'])) {
         $id = $_GET['id'];
         $titre = htmlspecialchars($_POST['title']);
         $content = htmlspecialchars($_POST['content']);
         $image = htmlspecialchars($_POST['image']);
         $set = $bdd->prepare("UPDATE `pageaccueil` SET `titre`=?,`content`=?,`photo`=? WHERE id = ?");
         $set -> execute(array($titre, $content, $image, $id));
-        $message="L'article a bien été modifié.";
-        header( "refresh:2;url=index.php?page=boaccueil" );
+        $message="bien joué";
     }else {
-        $message = "Veuillez remplir tous les champs du formulaire.";
+        $message = "check la form";
     }
 }
 if (isset ($message)) {

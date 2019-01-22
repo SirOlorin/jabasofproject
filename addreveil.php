@@ -3,36 +3,33 @@
 
 <?php
 $bdd = new PDO("mysql:host=127.0.0.1;dbname=jabasof;charset=utf8", "root", "");
-if(isset($_POST['submit']) AND isset($_GET['room'])) {
+if(isset($_POST['submit'])) {
     if( !empty($_POST['name']) AND !empty($_POST['time']) AND ($_POST['once']) != ($_POST['weekly'])) {
         $name = htmlspecialchars($_POST['name']);
         $time = htmlspecialchars($_POST['time']);
         $once = htmlspecialchars($_POST['once']);
         $weekly = htmlspecialchars($_POST['weekly']);
-        $room = htmlspecialchars($_GET['room']);
         if ($once == "on" ) {
             if (!empty($_POST['valdate'])) {
                 $val1 = htmlspecialchars($_POST['valdate']);
-                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`,`room_id`) VALUES (?,?,?,?,?,?)");
-                $set -> execute(array($name,'once', $val1, NULL, $time,$room));
-                $message="Le réveil a bien été ajouté.";
-                header( "refresh:2;url=index.php?page=house&id=".$_GET['room']);
+                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`) VALUES (?,?,?,?,?)");
+                $set -> execute(array($name,'once', $val1, NULL, $time));
+                $message="bien joué";
             }else{
-                $message="Veuillez indiquer la date.";
+                $message="pas de valdate";
             }
         }else{
             if (!empty($_POST['valday'])) {
                 $val2 = implode(', ',$_POST['valday']);
-                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`,`room_id`) VALUES (?,?,?,?,?,?)");
-                $set -> execute(array($name,'weekly', NULL, $val2, $time,$room));
-                $message="Le réveil a bien été ajouté.";
-                header( "refresh:2;url=index.php?page=house&id=".$_GET['room']);
+                $set = $bdd->prepare("INSERT INTO `alarmclock`(`name`, `frequency`, `val1`, `val2`, `time`) VALUES (?,?,?,?,?)");
+                $set -> execute(array($name,'weekly', NULL, $val2, $time));
+                $message="bien joué";
             }else{
-                $message="Veuillez indiquer un ou plusieurs jours.";
+                $message="pas de valday";
             }
         }
     }else {
-        $message = "Veuillez remplir tous les champs du formulaire.";
+        $message = "check la form";
     }
 }
 ?>

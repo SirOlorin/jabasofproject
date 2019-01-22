@@ -35,8 +35,13 @@ session_start();
             if(isset($_SESSION['signed_in'])) {
                 $currentid = $_SESSION['signed_in'];
                 echo '
-            <li><a href="?page=houses">Mes Maisons</a>
+            <li><a href="?page=tableaudebord">Tableau de bord</a>
                 <div class="subwrap">
+                    <ul class="sub">
+                        <li><a href="?page=confort">Confort</a></li>
+                        <li><a href="?page=reveil">Réveil</a></li>
+                        <li><a href="?page=securite">Sécurité</a></li>
+                    </ul>
                 </div>
             </li>
             <li><a>Paramètres</a>

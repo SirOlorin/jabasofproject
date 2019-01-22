@@ -70,16 +70,22 @@ else
                 echo '<table border="1">
                       <tr>
                         <th>Sujet</th>
-                        <th>Date de création : </th>
+                        <th>Utilisateur et date : </th>
                       </tr>';
 
                 while($row = mysqli_fetch_array($result3))
                 {
+                    if($_SESSION['user_id'] == 1) {
+                        echo '<td class="lefterpart">';
+                        echo " <a href='deletetopic.php?topic_id=".$row['topic_id']."'>Supprimer sujet </a>";
+                        echo '</td>';
+                    }
                     echo '<tr>';
                     echo '<td class="leftpart">';
                     echo "<h3><a href='topic.php?topic_id=$save'> '" . $row['topic_subject'] . "'</a><h3>";
                     echo '</td>';
                     echo '<td class="rightpart">';
+                    echo  'par ' . $_SESSION['user_name'] . ' le : ';
                     echo date('d-m-Y', strtotime($row['topic_date']));
                     echo '</td>';
                     echo '</tr>';

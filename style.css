@@ -80,6 +80,16 @@ h3 {margin: 0; padding: 0;}
 .leftpart {
     width: 70%;
 }
+
+.lefterpart {
+    width: 85%;
+}
+
+
+.righterpart {
+    width: 15%;
+}
+
  
 .rightpart {
     width: 30%;

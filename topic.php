@@ -38,6 +38,7 @@ else
 
         $sql2 = "SELECT
                     posts.post_topic,
+                    posts.post_id,
                     posts.post_content,
                     posts.post_date,
                     posts.post_by,
@@ -55,7 +56,6 @@ else
                     `posts`.`post_date` ASC";
 
 
-        mysqli_query($link, $sql2);
         $result2 = mysqli_query($link, $sql2);
 
         if(!$result2)
@@ -67,6 +67,10 @@ else
             if(mysqli_num_rows($result2) == 0)
             {
                 echo 'Il n\'y pas encore de post dans cette catégorie';
+                echo "<form method='post' action='reply.php?post_id=$save'>
+                    <textarea name='reply-content'></textarea>
+                    <input type='submit' value='Poster réponse' />
+                </form>";
 
             }
             else
@@ -81,13 +85,17 @@ else
 
                 while($row = mysqli_fetch_array($result2))
                 {
+                    if($_SESSION['user_id'] == 1) {
+                        echo '<td class="lefterpart">';
+                        echo " <a href='deletepost.php?post_id=".$row['post_id']."'>Supprimer post </a>";
+                        echo '</td>';
+                    }
                     echo '<tr>';
                     echo '<td class="leftpart">';
                     echo '' . $row['post_content'] . '';
                     echo '</td>';
                     echo '<td class="rightpart">';
-
-                    echo  'par ' . $row['user_name'] . ' le : ';
+                    echo  'par ' . $_SESSION['user_name'] . ' le : ';
                     echo date('d-m-Y', strtotime($row['post_date']));
                     echo '</td>';
                     echo '</tr>';

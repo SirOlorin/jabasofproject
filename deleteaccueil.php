@@ -7,10 +7,10 @@ if(isset($_POST['deleteaccueil'], $_GET['id'])) {
     $id = $_GET['id'];
     $set = $bdd->prepare("DELETE FROM `pageaccueil` WHERE id = ?");
     $set -> execute(array($id));
-    $message="L'article a bien été suppprimé.";
+    $message="bien joué, c'est supprimé";
     header( "refresh:2;url=index.php?page=boaccueil" );
 }else{
-    $message = "Veuillez remplir tous les champs du formulaire.";
+    $message = "no post";
 }
 if (isset ($message)) {
     echo $message;

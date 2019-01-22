@@ -11,7 +11,8 @@ if (isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true) {
 $sql = "SELECT
             cat_id,
             cat_name,
-            cat_description
+            cat_description,
+            last_topic
         FROM
             categories";
 
@@ -34,24 +35,27 @@ else
         //prepare the table
         echo '<table border="1">
               <tr>
-                <th>Catégorie</th>
+                <th>Catégories</th>
                 <th>Dernier sujet</th>
               </tr>';
         //if($result = mysqli_query($link, $sql))
         //{
 
 
-        $fetch = mysqli_fetch_assoc($result);
-
         while($row = mysqli_fetch_array($result))
         {
+            if($_SESSION['user_id'] == 1) {
+                echo '<td class="lefterpart">';
+                echo " <a href='deletecat.php?cat_id=".$row['cat_id']."'>Supprimer catégorie </a>";
+                echo '</td>';
+        }
 
             echo '<tr>';
             echo '<td class="leftpart">';
             echo "<h3><a href='category.php?cat_id=$row[cat_id]'> '".$row['cat_name']."'</a></h3>'".$row['cat_description']."'";
             echo '</td>';
             echo '<td class="rightpart">';
-            echo "<a href='topic.php?topic_id=$row[cat_id]'>Sujet</a>";
+            echo "<a href='topic.php?topic_id=$row[cat_id]'>'".$row['last_topic']."'</a>";
             echo '</td>';
             echo '</tr>';
         }
@@ -66,7 +70,7 @@ else
 
 }
 else {
-    echo 'Désolé, vous devez être <a href="?page=connexion">connecté</a>  pour accéder au forum.';
+    echo "Désolé, vous devez être <a href='index.php?page=connexion'> connecté </a>  pour accéder au forum.";
 }
 
 ?>

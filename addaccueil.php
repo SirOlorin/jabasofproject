@@ -10,11 +10,11 @@ if(isset($_POST['submit'])) {
         $photo = htmlspecialchars($_POST['image']);
         $set = $bdd->prepare("INSERT INTO `pageaccueil`(`titre`, `content`, `photo`) VALUES (?,?,?)");
         $set -> execute(array($titre, $content, $photo));
-        $message="L'article a bien été ajouté.";
+        $message="bien joué";
         //header('Location: index.php?page=boaccueil ');
         header( "refresh:2;url=index.php?page=boaccueil" );
     }else {
-        $message = "Veuillez remplir tous les champs du formulaire.";
+        $message = "check la form";
     }
 }
 

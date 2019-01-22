@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Confort</title>
-    <link rel="stylesheet" type="text/css" href="demomap.css">
+    <link rel="stylesheet" type="text/css" href="confort.css">
 </head>
 <body>
 <center><h2 style="font-family:sans-serif; color: white; font-size: 50px;">Sécurité</h2></center>
