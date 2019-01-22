@@ -16,7 +16,7 @@ session_start();
             <li><a href="?page=accueil">Accueil</a>
                 <div class="subwrap">
                     <ul class="sub">
-                        <li><a href="#presentation">Qui sommes-nous ?</a></li>
+                        <li><a href="?page=Facebook">Qui sommes-nous ?</a></li>
                     </ul>
                 </div>
             </li>
