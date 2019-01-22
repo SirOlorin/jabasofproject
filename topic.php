@@ -100,7 +100,6 @@ else
                     echo '</td>';
                     echo '</tr>';
                 }
-                echo $save;
                 echo "<form method='post' action='reply.php?post_id=$save'>
                     <textarea name='reply-content'></textarea>
                     <input type='submit' value='Poster réponse' />
