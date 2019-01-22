@@ -1,5 +1,5 @@
 <?php
-if(isset($_GET['id']) AND isset($_SESSION['user_id'])){
+if(isset($_GET['houseid']) AND isset($_SESSION['user_id'])){
 
     $houseid=$_GET['houseid'];
     $user_id=$_GET['userid'];
