@@ -7,9 +7,22 @@ if(isset($_SESSION['user_id']) ) {
     $userid = htmlspecialchars($_SESSION['user_id']);
     if (isset($_POST['addhouse'])){
         if (!empty($_POST['housename'])){
+            $userid = htmlspecialchars($_SESSION['user_id']);
             $housename = htmlspecialchars($_POST['housename']);
-            $addhouse = $bdd->query('INSERT INTO `houses`(`house_name`, `admin_id`) VALUES ("'.$housename.'", '.$userid.')');
-            $message = "La maison a bien été ajoutée.";
+            $checkhouse = $bdd->query('SELECT `house_id` FROM `houses` WHERE `admin_id`='.$userid.' AND `house_name`="'.$housename.'"');
+            $housecount = $checkhouse -> rowCount();
+            if ($housecount==0){
+                $addhouse = $bdd->query('INSERT INTO `houses`(`house_name`, `admin_id`) VALUES ("'.$housename.'", '.$userid.')');
+                $checkhouse = $bdd->query('SELECT `house_id` FROM `houses` WHERE `admin_id`='.$userid.' AND `house_name`="'.$housename.'"');
+                while ($result=$checkhouse->fetch()){
+                    $newhouseid=htmlspecialchars($result['house_id']);
+                }
+                $addlink = $bdd->query ('INSERT INTO `houselinks`(`house_id`, `user_id`) VALUES ('.$newhouseid.','.$userid.')');
+                $message = "La maison a bien été ajoutée.";
+                header( "refresh:2;url=index.php?page=houses" );
+            }else{
+                $message = "Cette maison existe déjà.";
+            }
         }else{
             $message = "Veuillez remplir le fomulaire.";
         }
