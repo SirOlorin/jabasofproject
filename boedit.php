@@ -2,7 +2,7 @@
 $servername = "localhost:3306";
 $username = "root";                    //      <---- changer infos de connection
 $password = "";
-$dbname = "forum";
+$dbname = "jabasof";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
