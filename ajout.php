@@ -14,19 +14,17 @@
 </div>
 
 <div class="container">
-    <div class="filterDiv objets">Montre Connectée</div>
-    <div class="filterDiv fonctions">Verrou Digital</div>
-    <div class="filterDiv capteurs">Capteur d'humidité</div>
-    <div class="filterDiv cameras">Cam 3.0</div>
-    <div class="filterDiv objets">Baguette Magique</div>
-    <div class="filterDiv fonctions">Météo</div>
-    <div class="filterDiv capteurs">Capteur de pollution</div>
-    <div class="filterDiv cameras">Camera mobile</div>
-    <div class="filterDiv cameras">Camera à vision nocturne</div>
-    <div class="filterDiv fonctions">Verrou à empreinte</div>
-    <div class="filterDiv objets">Enceinte connectée</div>
-    <div class="filterDiv fonctions">Support 24/7</div>
-    <div class="filterDiv capteurs">Détecteur infrarouge</div>
+    <?php
+
+    $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
+
+    $getcatalog = $bdd->query('SELECT * FROM `fonction`');
+    while($result=$getcatalog->fetch()) {
+        echo '
+        <div class="filterDiv '.$result['categorie'].'">'.$result['name'].'</div>
+        ';
+    }
+    ?>
 </div>
 </div>
 
