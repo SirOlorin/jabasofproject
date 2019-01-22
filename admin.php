@@ -21,6 +21,10 @@
     <form action="?page=bocatalogue" method="post">
         <input type="submit" value="Administrer le catalogue">
     </form>
+    <br><br>
+    <form action="?page=editmembers" method="post">
+        <input type="submit" value="Gérer les membres">
+    </form>
 </div>
 
 
