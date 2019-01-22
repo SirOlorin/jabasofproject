@@ -19,7 +19,7 @@ $z=mysqli_real_escape_string($conn,$_POST["categorie"]);
 $id=mysqli_real_escape_string($conn,$_POST["id"]);
 $err=null;
 
-$check = "SELECT * from fonction where name LIKE '$x'";
+$check = "SELECT * from fonctions where name LIKE '$x'";
 $result = $conn->query($check);
 
 
@@ -33,7 +33,7 @@ if($result->num_rows < 1)
     $y=mysqli_real_escape_string($conn,$_POST["description"]);
     $z=mysqli_real_escape_string($conn,$_POST["categorie"]);
     $id=mysqli_real_escape_string($conn,$_POST["id"]);
-    $sql = "INSERT INTO fonction (name, description, id, categorie)
+    $sql = "INSERT INTO fonctions (name, description, id, categorie)
     VALUES ('{$x}', '{$y}','{$id}','{$z}')";
     
         $result2=mysqli_query($conn, $sql);
