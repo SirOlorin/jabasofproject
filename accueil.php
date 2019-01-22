@@ -2,7 +2,11 @@
 <link rel="stylesheet" type="text/css" href="accueil.css">
 <br>
 
-<center><h2 style="font-family:sans-serif; color: #373737; font-size: 200px;">ACCUEIL</h2></center>
+<div id="homediv">
+    <img id="home" src="https://puu.sh/CAMdZ/64b5e1a559.jpg">
+
+</div>
+
 
 <!--
 <div id="block page">

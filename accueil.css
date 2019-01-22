@@ -8,6 +8,11 @@
     padding-left: 100px;*/
 }
 
+
+#home {
+    width: 100%;
+}
+
 .carte { /* placement de l'image */
     position: relative;
     display: inline-block;
