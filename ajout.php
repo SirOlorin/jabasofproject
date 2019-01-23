@@ -18,7 +18,7 @@
 
     $bdd = new PDO('mysql:host=127.0.0.1;dbname=jabasof', 'root', '',array (PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''));
 
-    $getcatalog = $bdd->query('SELECT * FROM `fonction`');
+    $getcatalog = $bdd->query('SELECT * FROM `fonctions`');
     while($result=$getcatalog->fetch()) {
         echo '
         <div class="filterDiv '.$result['categorie'].'">'.$result['name'].'</div>

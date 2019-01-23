@@ -126,6 +126,8 @@ if (isset ($message)) {
 
 ?>
 
+b
+
 <style type="text/css">
 
     #shownElement {
