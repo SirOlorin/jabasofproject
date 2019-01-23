@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 22 jan. 2019 à 20:57
+-- Généré le :  mer. 23 jan. 2019 à 10:39
 -- Version du serveur :  5.7.23
 -- Version de PHP :  7.2.10
 
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `alarmclock` (
   `time` time DEFAULT NULL,
   `room_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `alarmclock`
@@ -48,9 +48,10 @@ INSERT INTO `alarmclock` (`id`, `name`, `frequency`, `val1`, `val2`, `time`, `ro
 (1, 'clock1', 'once', '1111-11-11', NULL, '11:11:00', 1),
 (2, 'clock2', 'once', '2018-12-28', NULL, '00:00:00', 1),
 (3, 'clock3', 'weekly', NULL, 'mardi, mercredi, jeudi', '09:09:00', 2),
-(4, 'jackie', 'weekly', NULL, 'lundi, mardi', '08:00:00', 2),
-(5, 'michel', 'weekly', NULL, 'mercredi', '09:00:00', 2),
-(6, 'reveilroom3', 'weekly', NULL, 'lundi', '11:11:00', 3);
+(4, 'Réveil perso', 'weekly', NULL, 'lundi, mardi', '08:00:00', 2),
+(5, 'Réveil 5', 'weekly', NULL, 'mercredi', '09:00:00', 2),
+(6, 'reveilroom3', 'weekly', NULL, 'lundi', '11:11:00', 3),
+(7, 'travail', 'weekly', NULL, 'lundi, mercredi', '08:01:00', 8);
 
 -- --------------------------------------------------------
 
@@ -118,15 +119,15 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `last_topic` varchar(255) NOT NULL,
   PRIMARY KEY (`cat_id`),
   UNIQUE KEY `cat_name_unique` (`cat_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `categories`
 --
 
 INSERT INTO `categories` (`cat_id`, `cat_name`, `cat_description`, `last_topic`) VALUES
-(4, 'Retours utilisateurs', 'Exprimez ici votre satisfaction/mecontentement !', 'Merci Jabasof !'),
-(10, 'Support', 'Posez ici vos question techniques !', 'None');
+(10, 'Support', 'Posez ici vos question techniques !', 'None'),
+(11, 'Cadre LÃ©gale', 'Discussions juridiques', 'Vide');
 
 -- --------------------------------------------------------
 
@@ -151,26 +152,31 @@ INSERT INTO `client` (`nom`, `prenom`, `mail`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fonction`
+-- Structure de la table `fonctions`
 --
 
-DROP TABLE IF EXISTS `fonction`;
-CREATE TABLE IF NOT EXISTS `fonction` (
-  `fct_id` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `fonctions`;
+CREATE TABLE IF NOT EXISTS `fonctions` (
   `name` varchar(256) NOT NULL,
   `description` text NOT NULL,
-  `tag` varchar(256) NOT NULL,
-  PRIMARY KEY (`fct_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL,
+  `categorie` varchar(256) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `fonction`
+-- Déchargement des données de la table `fonctions`
 --
 
-INSERT INTO `fonction` (`fct_id`, `name`, `description`, `tag`) VALUES
-(1, 'lumière', 'allumer/éteindre la lumière', 'fonctionnalité'),
-(2, 'test', 'test + modif', 'test'),
-(3, 'test2', 'test2', 'objets');
+INSERT INTO `fonctions` (`name`, `description`, `id`, `categorie`) VALUES
+('Montre connectée', '', 0, 'objets'),
+('Baguette magique', '', 1, 'objets'),
+('Baguette magique', '', 1, 'objets'),
+('Verrou digital', '', 2, 'fonctions'),
+('Détecteur infrarouge', '', 3, 'capteurs'),
+('Caméra infrarouge', '', 4, 'camera'),
+('Support 24/7', '', 5, 'fonctions'),
+('Capteur d\'ondes', ' ', 90, 'capteurs'),
+('test', 'test', 45, 'objets');
 
 -- --------------------------------------------------------
 
@@ -184,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `houselinks` (
   `house_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`houselink_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `houselinks`
@@ -199,7 +205,9 @@ INSERT INTO `houselinks` (`houselink_id`, `house_id`, `user_id`) VALUES
 (15, 4, 3),
 (7, 4, 5),
 (8, 4, 6),
-(16, 8, 1);
+(16, 8, 1),
+(17, 9, 7),
+(18, 10, 8);
 
 -- --------------------------------------------------------
 
@@ -213,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `houses` (
   `house_name` varchar(32) NOT NULL,
   `admin_id` varchar(32) NOT NULL,
   PRIMARY KEY (`house_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `houses`
@@ -227,7 +235,9 @@ INSERT INTO `houses` (`house_id`, `house_name`, `admin_id`) VALUES
 (5, 'la casa 2', ''),
 (6, 'Main House', 'admin'),
 (7, 'Map Demo House', '1'),
-(8, 'New', '1');
+(8, 'New', '1'),
+(9, 'Maison d\'Adrien', '7'),
+(10, 'maison de vacance', '8');
 
 -- --------------------------------------------------------
 
@@ -242,18 +252,17 @@ CREATE TABLE IF NOT EXISTS `pageaccueil` (
   `content` text NOT NULL,
   `photo` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `pageaccueil`
 --
 
 INSERT INTO `pageaccueil` (`id`, `titre`, `content`, `photo`) VALUES
-(1, 'Nous facilitons et sécurisons la vie de nos utilisateurs 1', 'Nous facilitons la vie de nos utilisateurs à travers 3 grands aspects :\r\n                <br>- Le confort\r\n                <br>- La sécurité\r\n                <br>- La matinée\r\n                <br><br>À travers différents systèmes interconnectés nous vous assurons un confort optimal\r\n                pour un effort moindre. La température, la luminosité, l\'ouverture des stores pourrons\r\n                enfin être réglables d\'un simple geste grâce à notre application.\r\n                <br>Grâce à différents systèmes de caméra connectées à notre centre, vous n\'aurez plus\r\n                <br>de soucis de cambriolage. Grâce à ce système, vous pourrez enfin sortir l\'esprit\r\n                tranquille. 1', 'https://freshidees.com/wp-content/uploads/2017/04/pouf-geant-1-410x390.jpg'),
-(2, 'Nous facilitons et sécurisons la vie de nos utilisateurs 2', 'Nous facilitons la vie de nos utilisateurs à travers 3 grands aspects :\r\n                <br>- Le confort\r\n                <br>- La sécurité\r\n                <br>- La matinée\r\n                <br><br>À travers différents systèmes interconnectés nous vous assurons un confort optimal\r\n                pour un effort moindre. La température, la luminosité, l\'ouverture des stores pourrons\r\n                enfin être réglables d\'un simple geste grâce à notre application.\r\n                <br>Grâce à différents systèmes de caméra connectées à notre centre, vous n\'aurez plus\r\n                <br>de soucis de cambriolage. Grâce à ce système, vous pourrez enfin sortir l\'esprit\r\n                tranquille. 2', 'https://freshidees.com/wp-content/uploads/2017/04/pouf-geant-1-410x390.jpg'),
-(7, 'Article Premier', 'Tout utilisateur de ce site devra utiliser un Asus Zenbook PRO 501VW sans quoi il se verra mourrir le soir-même. - Jean-Baptiste de Villermont', 'https://www.asus.com/fr/Commercial-Laptops/ASUS-ZenBook-Pro-UX501VW/websites/global/products/cp7UN9BtMU7UNPWc/img/00/fg00.png'),
-(3, 'Nous facilitons et sécurisons la vie de nos utilisateurs 3', 'Nous facilitons la vie de nos utilisateurs à travers 3 grands aspects :\r\n                <br>- Le confort\r\n                <br>- La sécurité\r\n                <br>- La matinée\r\n                <br><br>À travers différents systèmes interconnectés nous vous assurons un confort optimal\r\n                pour un effort moindre. La température, la luminosité, l\'ouverture des stores pourrons\r\n                enfin être réglables d\'un simple geste grâce à notre application.\r\n                <br>Grâce à différents systèmes de caméra connectées à notre centre, vous n\'aurez plus\r\n                <br>de soucis de cambriolage. Grâce à ce système, vous pourrez enfin sortir l\'esprit\r\n                tranquille. 3', 'https://freshidees.com/wp-content/uploads/2017/04/pouf-geant-1-410x390.jpg'),
-(9, 'test', 'bonjour', 'rien');
+(1, 'Nous facilitons et sécurisons la vie de nos utilisateurs', 'Nous facilitons la vie de nos utilisateurs à travers 3 grands aspects :\r\n- Le confort\r\n- La sécurité\r\n- La matinée\r\nÀ travers différents systèmes interconnectés nous vous assurons un confort optimal pour un effort moindre. La température, la luminosité, l\'ouverture des stores pourrons enfin être réglables d\'un simple geste grâce à notre application.\r\nGrâce à différents systèmes de caméra connectées à notre centre, vous n\'aurez plus de soucis de cambriolage. Grâce à ce système, vous pourrez enfin sortir l\'esprit tranquille.', 'http://img.izismile.com/img/img10/20171214/640/a_perfect_house_for_just_a_275_million_640_01.jpg'),
+(15, 'Votre confort, notre objectif !', ' À travers différents système interconnecter nous vous assurons un confort optimal pour un effort moindre.  La température, la luminosité, l\'ouverture des stores pourrons enfin être réglable d\'un simple geste grâce à notre application.', '\r\nhttps://freshidees.com/wp-content/uploads/2017/04/pouf-geant-1-410x390.jpg'),
+(16, 'Faciliter les réveils difficiles est un de nos atouts', 'Grâce à réveil adapté à vos besoin le réveil ne sera plus une tâche difficile. Lumière progressive, musique apaisante, information de l\'heure de départs en direct... Tout y est !', 'http://absfreepic.com/absolutely_free_photos/small_photos/house-near-seaside-at-romantic-sunset-4500x2998_50433.jpg'),
+(14, 'Votre sécurité nous importe aussi', 'Grâce à différents systèmes de caméra connecter à notre centre vous n\'aurez plus de soucis de cambriolage. Mais aussi nous tenons à vous protéger de certain risque d\'incendie grâce à notre détecteur de fumée connecté', 'https://www.allcooper.com/portals/0/Home-Security-1.jpg');
 
 -- --------------------------------------------------------
 
@@ -267,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `pagefaq` (
   `question` text NOT NULL,
   `content` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `pagefaq`
@@ -275,9 +284,9 @@ CREATE TABLE IF NOT EXISTS `pagefaq` (
 
 INSERT INTO `pagefaq` (`id`, `question`, `content`) VALUES
 (1, 'Qui sommes-nous ?', 'Des étudiants de l\'Isep'),
-(2, 'Etes-vous payés ?', '1 2 3 4 5 6 7 8 9 1 1 2 3 4 5 6 7 8 9 2 1 2 3 4 5 6 7 8 9 3 1 2 3 4 5 6 7 8 9 4 1 2 3 4 5 6 7 8 9 5 1 23 4 5 6 7 8 9 6 1 2 3 4 56 7 8 9 7 1 2 3 4 5 67 8 9 8 1 2 3 4 5 6 7 8 9 9 1 2 3 4 5 6 7 8 9 1 1 2 3 4 5 6 7 8 9 1 1 2 3 4 5 6 7 8 9 2 1 2 3 4 '),
-(3, 'Qu\'avez-vous à faire à part un site ?', 'Un jeu de DomiNations'),
-(4, 'modification speicale', 'vraiment speciale');
+(2, 'Pourquoi devrions-nous vous faire confiance ?', 'Nous sommes spécialisés dans la domotique et dans le génie logiciel, notre formation nous offre une capacité de conception que vous ne trouverez nul part ailleurs.'),
+(8, 'Avez-vous un superviseur ?', 'Nous sommes supervisés par le M. Angarita.'),
+(9, 'Comment s\'appelle la solution ?', 'Jabasof.');
 
 -- --------------------------------------------------------
 
@@ -295,7 +304,18 @@ CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`post_id`),
   KEY `post_topic` (`post_topic`),
   KEY `post_by` (`post_by`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `posts`
+--
+
+INSERT INTO `posts` (`post_id`, `post_content`, `post_date`, `post_topic`, `post_by`) VALUES
+(1, 'Bonjour', '2019-01-22 22:41:54', 18, 1),
+(2, 'Au secours', '2019-01-22 22:42:32', 19, 1),
+(3, 'Mon voisin est trop bruyant, que puis-je faire ?', '2019-01-23 09:28:06', 20, 1),
+(6, 'bonjour j\'ai un problÃ¨me', '2019-01-23 10:30:35', 21, 8),
+(5, 'Merci encore !', '2019-01-23 09:33:22', 15, 1);
 
 -- --------------------------------------------------------
 
@@ -312,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `temperature` int(11) NOT NULL,
   `house_id` int(11) NOT NULL,
   PRIMARY KEY (`room_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `rooms`
@@ -326,14 +346,18 @@ INSERT INTO `rooms` (`room_id`, `room_name`, `movedetect`, `light`, `temperature
 (5, 'bathroom1', 'on', 'on', 22, 0),
 (6, 'hallway', 'on', 'on', 22, 0),
 (7, 'kitchen', 'off', 'on', 28, 0),
-(8, 'livingroom', 'on', 'on', 22, 0),
+(8, 'livingroom', 'on', 'on', 20, 0),
 (9, 'bathroom2', 'on', 'on', 22, 0),
-(10, 'Living Room', 'on', 'off', 44, 4),
-(11, 'Main Room', 'off', 'off', 20, 4),
+(10, 'Living Room', 'off', 'off', 30, 4),
+(11, 'Main Room', 'on', 'on', 20, 4),
 (12, 'Guest Room', 'off', 'off', 20, 4),
 (13, 'Kitchen', 'off', 'off', 20, 4),
 (15, 'Cuisine', 'off', 'off', 25, 4),
-(17, 'Chambre de JB', 'off', 'on', 5, 4);
+(17, 'Chambre de JB', 'off', 'on', 5, 4),
+(19, 'Chambre', 'off', 'off', 25, 9),
+(20, 'Cuisine', 'off', 'off', 25, 9),
+(21, 'Cuisine', 'off', 'off', 25, 10),
+(22, 'Pièce d\'Olivier', 'off', 'off', 25, 4);
 
 -- --------------------------------------------------------
 
@@ -353,11 +377,7 @@ CREATE TABLE IF NOT EXISTS `technique` (
 --
 
 INSERT INTO `technique` (`nom`, `prenom`, `mail`) VALUES
-('DUVAL', 'Bernard', 'b.duval@gmail.com'),
-('qsdrg', 'qdsfg', 'sdg@sqdg'),
-('sdg', 'qsedg', 'qsdfg@qsdg'),
-('', '', ''),
-('qsdf', 'qsdf', 'qsdf@fqsdf');
+('DUVAL', 'Bernard', 'bduval@jabasof.fr');
 
 -- --------------------------------------------------------
 
@@ -376,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `topics` (
   PRIMARY KEY (`topic_id`),
   KEY `topic_by` (`topic_by`),
   KEY `topic_cat` (`topic_cat`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `topics`
@@ -386,7 +406,10 @@ INSERT INTO `topics` (`topic_id`, `topic_subject`, `topic_date`, `topic_cat`, `t
 (18, 'C\'est reparti !', '2019-01-22 19:07:52', 4, 15, 'Comme en 40 !'),
 (17, 'Voyons si Ã§a marche', '2019-01-22 13:35:00', 10, 1, 'Comment Ã§a marche ?'),
 (15, 'Merci Jabasof !', '2019-01-22 12:28:53', 4, 18, 'On vous aime !'),
-(16, 'Metro', '2019-01-22 12:46:52', 5, 18, 'J\'aime pas la ligne 13, et vous ?');
+(16, 'Metro', '2019-01-22 12:46:52', 5, 18, 'J\'aime pas la ligne 13, et vous ?'),
+(19, 'Je n\'arrive pas Ã  crÃ©er de catÃ©gorie', '2019-01-22 22:42:32', 10, 1, 'Au secours'),
+(20, 'J\'ai un problÃ¨me avec mon voisin', '2019-01-23 09:28:06', 11, 1, 'Mon voisin est trop bruyant, que puis-je faire ?'),
+(21, 'Je n\'arrive pas Ã  crÃ©er de catÃ©gorie', '2019-01-23 10:30:35', 10, 8, 'bonjour j\'ai un problÃ¨me');
 
 -- --------------------------------------------------------
 
@@ -405,18 +428,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   `user_date` datetime NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `user_name_unique` (`user_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`user_id`, `user_name`, `user_lastname`, `user_firstname`, `user_pass`, `user_email`, `user_date`) VALUES
-(2, 'alain', 'NGUYEN', 'Alain', '8450103c06dbd58add9d047d761684096ac560ca', 'alain@mail.com', '2019-01-17 19:42:25'),
 (1, 'admin', 'CHABCHOUB', 'Yousra', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'admin@admin.com', '2019-01-17 19:11:12'),
-(3, 'momo', NULL, NULL, '782dd27ea8e3b4f4095ffa38eeb4d20b59069077', 'momo@moom.fr', '2019-01-19 20:25:02'),
-(4, 'test1', 'TEST1', 'Test1', 'lol', 'test1@test.com', '2019-01-20 15:43:16'),
-(5, 'TEST2', 'TEST2', 'Test2', 'lol', 'test2@test.com', '2019-01-20 15:43:16');
+(7, 'adrien', 'Doste', 'Arthur', '4d10829f147c13c63c4579f5297a87efba1143a3', 'adrien@jabasof.fr', '2019-01-23 09:20:31'),
+(8, 'olivier', 'DEFAYE', 'olivier', '543b24ecc36f9811f3c6f0ee0e6df6dbe29891bb', 'o', '2019-01-23 10:26:40');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
